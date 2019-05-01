@@ -1,0 +1,11 @@
+{
+  "name": "employme",
+  "version": "1.0.0",
+  "description": "An application that allows job-seekers to find employment",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ashfaq Shimer",
+  "license": "ISC"
+}
