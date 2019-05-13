@@ -8,7 +8,11 @@ app.set('view engine', 'ejs');
 
 //Main code starts here
 app.get('/', (req, res) => {
-    res.render('home', {pageTitle:'EmployMe', path:'/'});
+    res.render('home', { pageTitle: 'EmployMe', path: '/' });
+});
+
+app.get('/signup', (req, res) => {
+    res.render('signup', { pageTitle: 'Sign Up', path: '/signup' });
 });
 
 //set the page not found
