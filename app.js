@@ -22,6 +22,12 @@ app.get('/login/jobseeker', (req, res) => {
 app.get('/login/admin', (req, res) => {
     res.render('login-admin', { pageTitle: 'Admin Login', path: '/login' });
 });
+
+//jobseeker route
+app.get('/jobseeker/', (req, res) => {
+    res.render('jobSeeker/homePage', { pageTitle: 'Job-Seeker', path: 'jobseeker/'})
+});
+
 //set the page not found
 app.use((req, res, next) => {
     res.status(404).render('404', { pageTitle: 'Page Not Found' });
