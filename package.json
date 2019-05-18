@@ -10,8 +10,11 @@
   "author": "Ashfaq Shimer",
   "license": "ISC",
   "dependencies": {
+    "@types/sequelize": "^4.28.1",
     "body-parser": "^1.19.0",
     "ejs": "^2.6.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.8.6"
   }
 }

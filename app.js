@@ -7,6 +7,8 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 //Main code starts here
+const sequelize = require('./util/database'); //importing the database
+
 app.get('/', (req, res) => {
     res.render('home', { pageTitle: 'EmployMe', path: '/' });
 });
@@ -23,18 +25,30 @@ app.get('/login/admin', (req, res) => {
     res.render('login-admin', { pageTitle: 'Admin Login', path: '/login' });
 });
 
-//jobseeker route
+//jobseeker routes
 app.get('/jobseeker/', (req, res) => {
-    res.render('jobSeeker/homePage', { pageTitle: 'Job-Seeker', path: 'jobseeker/'})
+    res.render('jobSeeker/homePage', { pageTitle: 'Job-Seeker', path: 'jobseeker/' });
 });
+
+app.get('/jobseeker/resume', (req, res) => {
+    res.render('jobSeeker/resume/instructions', { pageTitle: 'Resume', path: '/resume' });
+});
+
+
 
 //set the page not found
 app.use((req, res, next) => {
     res.status(404).render('404', { pageTitle: 'Page Not Found' });
 });
 
-
-
-app.listen(3030, () => {
-    console.log('App listening on port 3030!');
-});
+sequelize
+    .sync()
+    .then(result => {
+        console.log('TCL: result', result);
+        app.listen(4000, () => {
+            console.log('App listening on port 4000!');
+        });
+    })
+    .catch(err => {
+        console.log('TCL: err', err);
+    });

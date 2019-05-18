@@ -1,0 +1,20 @@
+<%- include('../../partials/JobSeeker/jobSeeker-head.ejs') %>
+<link rel="stylesheet" href="/css/footer.css">
+</head>
+
+<body>
+    <%- include('../../partials/JobSeeker/jobSeeker-navbar.ejs') %>
+
+    <%- include('../../partials/JobSeeker/resume-sidebar.ejs') %>
+    
+    <main class="container float-right">
+        <form action="/jobseeker/resume/work" method="POST">
+            <label for="title">Title</label>
+            <input name="title" type="text" id="work-title" />
+            <label for="work-description">Description</label>
+            <textarea name="description" id="" cols="30" rows="10"></textarea>
+        </form>
+    </main>
+
+    <%- include('../../partials/footer.ejs') %>
+</body>
