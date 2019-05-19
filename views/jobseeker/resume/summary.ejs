@@ -1,0 +1,21 @@
+<%- include('../../partials/jobseeker/jobseeker-head.ejs') %>
+<link rel="stylesheet" href="/css/footer.css">
+</head>
+
+<body>
+    <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %> <%-
+    include('../../partials/jobseeker/resume-sidebar.ejs') %>
+
+    <main class="container float-right">
+        <form class="summary-form" action="/jobseeker/resume/summary" method="POST">
+            <h1>Enter a summary of yourself or your career objective</h1>
+            <div class="form-group">
+                <label for="summary">Summary </label>
+                <textarea class="form-control" name="summary" id="" cols="30" rows="10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </main>
+
+    <%- include('../../partials/footer.ejs') %>
+</body>
