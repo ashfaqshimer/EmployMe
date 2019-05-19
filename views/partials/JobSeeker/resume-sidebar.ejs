@@ -1,25 +1,25 @@
 <aside id="side-tab" class="float-left">
     <ul class="nav nav-tabs flex-column nav-pills nav-fill rounded ">
         <li class="nav-item border rounded-top border-primary">
-            <a class="nav-link active" href="#">Instructions</a>
+            <a class="nav-link <%= tabpath==='/instructions' ? 'active' :'' %> " href="/jobseeker/resume">Instructions</a>
         </li>
         <li class="nav-item border border-primary">
-            <a class="nav-link" href="#">Summary</a>
+            <a class="nav-link <%= tabpath==='/summary' ? 'active' :'' %> " href="/jobseeker/resume/summary">Summary</a>
         </li>
         <li class="nav-item border -top border-primary">
-            <a class="nav-link" href="#">Work Experience</a>
+            <a class="nav-link" href="/jobseeker/resume/workexperience">Work Experience</a>
         </li>
         <li class="nav-item border  border-primary">
-            <a class="nav-link" href="#">Education</a>
+            <a class="nav-link" href="/jobseeker/resume/education">Education</a>
         </li>
         <li class="nav-item border  border-primary">
-            <a class="nav-link" href="#">Skills</a>
+            <a class="nav-link" href="/jobseeker/resume/skills">Skills</a>
         </li>
         <li class="nav-item border  border-primary">
-            <a class="nav-link" href="#">Personal Information</a>
+            <a class="nav-link" href="/jobseeker/resume/personalinfo">Personal Information</a>
         </li>
-        <li class="nav-item border bg-success rounded-bottom border-primary">
-            <a class="nav-link text-light" href="#">Generate CV</a>
+        <li class="nav-item border bg-warning rounded-bottom border-primary">
+            <a class="nav-link text-light" href="/jobseeker/resume/createcv">Generate CV</a>
         </li>
     </ul>
 </aside>

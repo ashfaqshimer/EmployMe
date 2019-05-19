@@ -1,3 +1,7 @@
+textarea{
+    resize: none;
+}
+
 #navbar .active {
     border: 2px solid #33313b;
     background-color: #4592af;
@@ -18,4 +22,10 @@ main.container {
     display: inline-block;
     width: 75%;
     box-sizing: border-box;
+}
+
+.summary-form{
+
+    text-align: center;
+    padding: 5px;
 }

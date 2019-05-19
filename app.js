@@ -18,7 +18,7 @@ app.get('/signup', (req, res) => {
 });
 
 app.get('/login/jobseeker', (req, res) => {
-    res.render('login-jobSeeker', { pageTitle: 'Job-Seeker Login', path: '/login' });
+    res.render('login-jobseeker', { pageTitle: 'Job-Seeker Login', path: '/login' });
 });
 
 app.get('/login/admin', (req, res) => {
@@ -27,28 +27,49 @@ app.get('/login/admin', (req, res) => {
 
 //jobseeker routes
 app.get('/jobseeker/', (req, res) => {
-    res.render('jobSeeker/homePage', { pageTitle: 'Job-Seeker', path: 'jobseeker/' });
+    res.render('jobseeker/homePage', { pageTitle: 'Job-Seeker', path: 'jobseeker/' });
 });
 
+//jobseeker resume routes
 app.get('/jobseeker/resume', (req, res) => {
-    res.render('jobSeeker/resume/instructions', { pageTitle: 'Resume', path: '/resume' });
+    res.render('jobseeker/resume/instructions', {
+        pageTitle: 'Resume',
+        path: '/resume',
+        tabpath: '/instructions'
+    });
 });
 
+app.get('/jobseeker/resume/summary', (req, res) => {
+    res.render('jobseeker/resume/summary', {
+        pageTitle: 'Resume - Summary',
+        path: '/resume',
+        tabpath: '/summary'
+    });
+});
 
+app.get('/jobseeker/resume/work-experience', (req, res) => {});
+
+app.get('/jobseeker/resume/education', (req, res) => {});
+
+app.get('/jobseeker/resume/skills', (req, res) => {});
+
+app.get('/jobseeker/resume/workexperience', (req, res) => {});
+
+app.get('/jobseeker/resume/workexperience', (req, res) => {});
+
+//jobseeker manage profile
+app.get('/jobseeker/manage-profile', (req, res) => {
+    res.render('jobseeker/manage-profile', {
+        pageTitle: 'Manage Profile',
+        path: '/manage-profile'
+    });
+});
 
 //set the page not found
 app.use((req, res, next) => {
     res.status(404).render('404', { pageTitle: 'Page Not Found' });
 });
 
-sequelize
-    .sync()
-    .then(result => {
-        console.log('TCL: result', result);
-        app.listen(4000, () => {
-            console.log('App listening on port 4000!');
-        });
-    })
-    .catch(err => {
-        console.log('TCL: err', err);
-    });
+app.listen(4000, () => {
+    console.log('App listening on port 4000!');
+});

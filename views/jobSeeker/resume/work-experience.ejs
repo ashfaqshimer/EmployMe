@@ -1,0 +1,27 @@
+<%- include('../../partials/jobseeker/jobseeker-head.ejs') %>
+<link rel="stylesheet" href="/css/footer.css">
+</head>
+
+<body>
+    <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %>
+
+    <%- include('../../partials/jobseeker/resume-sidebar.ejs') %>
+    
+    <main class="container float-right">
+            <form class="summary-form" action="/jobseeker/resume/summary" method="POST">
+                <h1>List down your work experiences</h1>
+                <div class="form-group">
+                        <label for="we-title">Title</label>
+                        <input class="form-control" type="text" name="we-title" placeholder="Your work Title">
+                    </div>
+
+                <div class="form-group">
+                    <label for="we-description">Description</label>
+                    <textarea class="form-control" name="we-description" id="" cols="20" rows="10"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </main>
+
+    <%- include('../../partials/footer.ejs') %>
+</body>
