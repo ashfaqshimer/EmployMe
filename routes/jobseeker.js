@@ -5,7 +5,7 @@ const router = express.Router();
 const User = require('../models/user');
 
 router.get('/', (req, res) => {
-    res.render('jobseeker/homePage', { pageTitle: 'Job-Seeker', path: 'jobseeker/' });
+    res.render('jobseeker/homepage', { pageTitle: 'Job-Seeker', path: 'jobseeker/' });
 });
 
 //jobseeker resume routes
