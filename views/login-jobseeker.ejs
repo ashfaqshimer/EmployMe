@@ -1,20 +1,14 @@
 <%- include('partials/head.ejs') %>
+<link rel="stylesheet" href="/css/home.css">
 <link rel="stylesheet" href="/css/footer.css">
 <!-- Custom styles for this template -->
 
 <link href="/css/jobseeker/login.css" rel="stylesheet" />
 </head>
 
-<body class="container">
+<body class="text-center">
         <%- include('partials/navbar.ejs') %>
     <form class="center form-signin mt-5 mb-3 p-2">
-        <img
-            class="mb-4"
-            src="/docs/4.3/assets/brand/bootstrap-solid.svg"
-            alt=""
-            width="72"
-            height="72"
-        />
         <h1 class="h3 mb-3 font-weight-normal">Job-Seeker Sign In</h1>
         <label for="username" class="sr-only">Username</label>
         <input
@@ -37,7 +31,6 @@
         <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">Sign in</button>
         
     </form>
-
     <div p-5>        
         <p>Don't have an account?</p>
         <a href="/signup">Register as a Job-Seeker</a>
