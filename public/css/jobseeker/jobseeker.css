@@ -1,4 +1,4 @@
-textarea{
+textarea {
     resize: none;
 }
 
@@ -24,8 +24,26 @@ main.container {
     box-sizing: border-box;
 }
 
-.summary-form{
-
+.summary-form {
     text-align: center;
     padding: 5px;
+}
+
+.container-custom {
+    margin: 10px auto;
+    padding: 10px;
+    width: 70%;
+}
+
+.manage-profile-form {
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 1.8;
+    background: #f9f8eb;
+}
+
+.manage-profile-body {
+    background: #211717;
 }

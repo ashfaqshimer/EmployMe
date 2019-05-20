@@ -1,51 +1,61 @@
 <%- include('../partials/jobseeker/jobseeker-head.ejs') %>
 </head>
 
-<body>
+<body class="manage-profile-body">
     <%- include('../partials/jobseeker/jobseeker-navbar.ejs') %>
-    <main>
-        <form action="/jobseeker/manage-profile" method="POST">
-            <div class="form-group">
-                <label for="job-sector">Preferred Job Sector</label>
-                <select class="form-control" name="sector" id="job-sector">
-                    <option value="" selected disabled hidden>--Select one--</option>
-                    <option value="">Accountancy, banking and finance.</option>
-                    <option value="">Business, consulting and management.</option>
-                    <option value="">Charity and voluntary work.</option>
-                    <option value="">Creative arts and design.</option>
-                    <option value="">Energy and utilities.</option>
-                    <option value="">Engineering and manufacturing.</option>
-                    <option value="">Environment and agriculture.</option>
-                    <option value="">Healthcare.</option>
-                    <option value="IT">Information Technology.</option>
-                </select>
+    <main class="container-custom">
+        <form
+            class="manage-profile-form border border-warning"
+            action="/jobseeker/manage-profile"
+            method="POST"
+        >
+            <div class="row">
+                <div class="form-group col">
+                    <label for="job-sector">Preferred Job Sector</label>
+                    <select class="form-control" name="sector" id="job-sector">
+                        <option value="" selected disabled hidden>--Select one--</option>
+                        <option value="">Accountancy, banking and finance.</option>
+                        <option value="">Business, consulting and management.</option>
+                        <option value="">Charity and voluntary work.</option>
+                        <option value="">Creative arts and design.</option>
+                        <option value="">Energy and utilities.</option>
+                        <option value="">Engineering and manufacturing.</option>
+                        <option value="">Environment and agriculture.</option>
+                        <option value="">Healthcare.</option>
+                        <option value="IT">Information Technology.</option>
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <label for="education-level">Your highest completed education level</label>
+                    <select class="form-control" name="education" id="education">
+                        <option value="" selected disabled hidden>--Select one--</option>
+                        <option value="1">Junior School</option>
+                        <option value="2">High School</option>
+                        <option value="3">Diploma</option>
+                        <option value="4">Undergratuate Degree</option>
+                        <option value="5">Masters</option>
+                        <option value="6">Ph.D</option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <label for="education-level">Your highest completed education level</label>
-                <select name="education" id="education">
-                    <option value="" selected disabled hidden>--Select one--</option>
-                    <option value="1">Junior School</option>
-                    <option value="2">High School</option>
-                    <option value="3">Diploma</option>
-                    <option value="4">Undergratuate Degree</option>
-                    <option value="5">Masters</option>
-                    <option value="6">Ph.D</option>
-                </select>
+                <div class="row">
+                <div class="form-group col">
+                    <label for="">Number of GCSE O/Level Passes</label>
+                    <input class="form-control" type="number" min="0" max="10" />
+                </div>
+                <div class="form-group col">
+                    <label for="">Number of GCSE A/Level Passes</label>
+                    <input class="form-control" type="number" min="0" max="10" />
+                </div>
             </div>
-            <div>
-                <label for="">Number of GCSE O/Level Passes</label>
-                <input type="number" min="0" max="10" />
-            </div>
-            <div>
-                <label for="">Number of GCSE A/Level Passes</label>
-                <input type="number" min="0" max="10" />
-            </div>
-            <br />
+  
+            <hr>
+
             <h1>Qualifications</h1>
             <p>Select where applicable, else select none</p>
-            <div>
+            <div class="form-group">
                 <label for="">A/Level Stream</label>
-                <select name="" id="">
+                <select class="form-control input" name="" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
                     <option value="">Science</option>
                     <option value="">Commerce</option>
@@ -54,9 +64,9 @@
                     <option value="">None</option>
                 </select>
             </div>
-            <div>
+            <div class="form-group">
                 <label for="">Diploma</label>
-                <select name="" id="">
+                <select class="form-control" name="" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
                     <option value="">Business Studies </option>
                     <option value="">Management Studies </option>
@@ -76,9 +86,9 @@
                     <option value="">None</option>
                 </select>
             </div>
-            <div>
+            <div class="form-group">
                 <label for="">Bachelor's Degree</label>
-                <select name="" id="">
+                <select  class="form-control" name="" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
                     <option value="">Business</option>
                     <option value="">Health professions and related programs</option>
@@ -95,9 +105,9 @@
                     <option value="">None</option>
                 </select>
             </div>
-            <div>
+            <div class="form-group">
                 <label for="">Masters</label>
-                <select name="" id="">
+                <select class="form-control" name="" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
                     <option value="">Business</option>
                     <option value="">Health professions and related programs</option>
@@ -114,9 +124,9 @@
                     <option value="">None</option>
                 </select>
             </div>
-            <div>
+            <div class="form-group">
                 <label for="">PhD</label>
-                <select name="" id="">
+                <select class="form-control" name="" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
                     <option value="">Business</option>
                     <option value="">Health professions and related programs</option>
@@ -133,9 +143,9 @@
                     <option value="">None</option>
                 </select>
             </div>
-            <div>
+            <div class="form-group">
                 <label for="">Professional Qualifications</label>
-                <select name="" id="">
+                <select class="form-control" name="" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
                     <option value="">Association of Chartered Certified Accountants (ACCA)</option>
                     <option value="">BCS - The Chartered Institute for IT</option>
@@ -149,6 +159,18 @@
                     <option value="">None</option>
                 </select>
             </div>
+            <button class="btn btn-primary" >Submit Changes</button>
+            <button class="btn btn-danger">Reset</button>
+            <br>
+            <hr>
+            <h1>Skills and Experience</h1>
+            <p>Your skills and experience will be managed from the resume manager section. If you haven't filled them out,
+                you may do so by clicking on the button below:                
+            </p>
+            <a class="btn btn-warning" href="/jobseeker/resume/skills">Update Skills</a>
+            <a class="btn btn-success" href="/jobseeker/resume/experience">Update Work Experience</a>
+    
+ 
         </form>
     </main>
     <%- include('../partials/footer.ejs') %>
