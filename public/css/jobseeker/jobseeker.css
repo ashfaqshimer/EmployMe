@@ -24,9 +24,16 @@ main.container {
     box-sizing: border-box;
 }
 
-.summary-form {
+.resume-form {
     text-align: center;
     padding: 5px;
+}
+
+.skill-submit {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
 }
 
 .container-custom {
@@ -42,6 +49,7 @@ main.container {
     text-align: center;
     line-height: 1.8;
     background: #f9f8eb;
+    box-shadow: #4592af
 }
 
 .manage-profile-body {

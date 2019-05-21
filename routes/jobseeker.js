@@ -25,15 +25,25 @@ router.get('/resume/summary', (req, res) => {
     });
 });
 
-router.get('/resume/work-experience', (req, res) => {});
+router.get('/resume/work-experience', (req, res) => {
+    res.render('jobseeker/resume/work-experience')
+});
 
-router.get('/resume/education', (req, res) => {});
+router.get('/resume/education', (req, res) => {
+    res.render('jobseeker/resume/education')
+});
 
-router.get('/resume/skills', (req, res) => {});
+router.get('/resume/skills', (req, res) => {
+    res.render('jobseeker/resume/skills', {pageTitle:"Resume-Skills", path:'/resume', tabpath:'/skills'})
+});
 
-router.get('/resume/workexperience', (req, res) => {});
+router.get('/resume/personal-info', (req, res) => {
+    res.render('jobseeker/resume/personalinfo')
+});
 
-router.get('/resume/workexperience', (req, res) => {});
+router.get('/resume/generate-cv', (req, res) => {
+    res.render('jobseeker/resume/generate-cv')
+});
 
 //jobseeker manage profile
 router.get('/manage-profile', (req, res) => {

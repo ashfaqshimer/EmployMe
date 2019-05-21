@@ -3,17 +3,30 @@
 </head>
 
 <body>
-    <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %>
+    <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %> <%-
+    include('../../partials/jobseeker/resume-sidebar.ejs') %>
 
-    <%- include('../../partials/jobseeker/resume-sidebar.ejs') %>
-    
-    <main class="container float-right">
-        <form action="/jobseeker/resume/skills" method="POST">
-            <label for="title">Title</label>
-            <input name="title" type="text" id="work-title" />
-            <label for="work-description">Description</label>
-            <textarea name="description" id="" cols="30" rows="10"></textarea>
-        </form>
+    <main class="container">
+        <div class="row">
+            <div class="col border border-dark rounded">
+                <form class="skill-submit" action="/jobseeker/resume/skills" method="POST">
+                    <div class="form-group">
+                        <label for="skill">Skill</label>
+                        <input class="form-control" name="skill" type="text" id="skill" />
+                    </div>
+                    <button class="btn btn-dark">Add Skill</button>
+                </form>
+            </div>
+            <div class="col border border-dark rounded ml-2 text-center">
+                <h1>Your skills</h1>
+                <p>Your selected skills are displayed here.</p>
+                <p>You can add up-to 10 skills</p>
+                <p>
+                    <em> You may remove an existing skill by clicking on the button.</em>
+                </p>
+                <hr>
+            </div>
+        </div>
     </main>
 
     <%- include('../../partials/footer.ejs') %>
