@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 //import routes
 const landingRoutes = require('./routes/landing');
@@ -7,6 +8,13 @@ const jobseekerRoutes = require('./routes/jobseeker');
 const adminRoutes = require('./routes/admin');
 
 const app = express();
+
+//Connecting the database
+mongoose.connect('mongodb://localhost:27017/employmeDB',{
+    useNewUrlParser:true,
+    useCreateIndex:true
+})
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');

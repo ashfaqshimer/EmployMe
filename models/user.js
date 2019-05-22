@@ -1,17 +1,22 @@
-const Sequelize = require('sequelize');
+const mongoose = require('mongoose');
+const validator = require('validator');
 
-const sequelize = require('../util/database');
+const Schema = mongoose.Schema;
 
-const User = sequelize.define('user', {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
+const userSchema = new Schema({
+    name: { type: String, required: true, trim: true },
+    email: {
+        type: String,
+        required: true,
+        validate(value) {
+            if (!validator.isEmail(value)) {
+                throw new Error('Email is invalid');
+            }
+        },
+        trim: true,
+        lowercase:true
     },
-    username: { type: Sequelize.STRING, allowNull: false },
-    email: { type: Sequelize.STRING, allowNull: false },
-    password: { type: Sequelize.TEXT, allowNull: false }
+    password: { type: String, required: true, minlength:6 }
 });
 
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

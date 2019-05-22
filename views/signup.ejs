@@ -4,13 +4,14 @@
 
 <body>
     <%- include('partials/navbar.ejs') %>
-    <div class="p-3 d-flex justify-content-center">
-        <form>
+    <div class="p-3 d-flex justify-content-center ">
+        <form action="/signup" method="POST">
             <div class="form-group row">
                 <label for="username">Username</label>
                 <input
                     type="text"
                     class="form-control"
+                    name="name"
                     id="username"
                     aria-describedby="usernameHelp"
                     placeholder="Enter your username"
@@ -26,6 +27,7 @@
                 <input
                     type="email"
                     class="form-control"
+                    name="email"
                     id="email"
                     aria-describedby="emailHelp"
                     placeholder="Enter email"
@@ -46,6 +48,7 @@
                 <input
                     type="password"
                     class="form-control"
+                    name="password"
                     id="confirm_password"
                     placeholder="Confirm Password"
                     required

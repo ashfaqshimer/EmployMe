@@ -1,27 +1,94 @@
 <%- include('../../partials/jobseeker/jobseeker-head.ejs') %>
-<link rel="stylesheet" href="/css/footer.css">
 </head>
 
 <body>
-    <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %>
+    <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %> <%-
+    include('../../partials/jobseeker/resume-sidebar.ejs') %>
 
-    <%- include('../../partials/jobseeker/resume-sidebar.ejs') %>
-    
-    <main class="container float-right">
-            <form class="summary-form" action="/jobseeker/resume/summary" method="POST">
-                <h1>List down your work experiences</h1>
-                <div class="form-group">
-                        <label for="we-title">Title</label>
-                        <input class="form-control" type="text" name="we-title" placeholder="Your work Title">
-                    </div>
+    <main class="container text-justify row">
+        <form class="summary-form col" action="/jobseeker/resume/summary" method="POST">
+            <h1 class="text-center">List down your work experiences</h1>
+            <div class="form-group">
+                <label for="we-title">Title</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    name="we-title"
+                    placeholder="Your work title"
+                />
+            </div>
+            <div class="form-group">
+                <label for="we-category">Job Category</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    name="we-category"
+                    placeholder="Job category"
+                />
+            </div>
+            <div class="form-group ">
+                <label for="we-duration">Duration in months in the job cateogory</label>
+                <input
+                    class="form-control"
+                    type="number"
+                    min="0"
+                    name="we-duration"
+                    placeholder="Duration in months"
+                />
+            </div>
 
-                <div class="form-group">
-                    <label for="we-description">Description</label>
-                    <textarea class="form-control" name="we-description" id="" cols="20" rows="10"></textarea>
+            <div class="form-group">
+                <label for="we-description">Description</label>
+                <p><em> Start your description with the start year to end year</em></p>
+                <textarea
+                    class="form-control"
+                    name="we-description"
+                    id=""
+                    cols="20"
+                    rows="10"
+                    placeholder="Brief description of your job role"
+                ></textarea>
+            </div>
+            <button
+                type="button"
+                class="btn btn-secondary float-left"
+                data-toggle="modal"
+                data-target="#view-work"
+            >
+                View Work Experiences
+            </button>
+            <button type="submit" class="btn btn-primary float-right">Submit</button>
+        </form>
+    </main>
+
+    <!-- Modal -->
+    <div
+        class="modal fade"
+        id="view-work"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </main>
-
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <%- include('../../partials/footer.ejs') %>
 </body>

@@ -1,15 +1,14 @@
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-success p-3 primary-navbar">
     <a class="navbar-brand" href="/">EmployMe</a>
     <ul class="navbar-nav ml-auto">
+        <li class="nav-item primary-navbar <%= path==='jobseeker/' ? 'active' :'' %> ">
+            <a class="nav-link " href="/jobseeker/">Home</a>
+        </li>
         <li class="nav-item primary-navbar <%= path==='/resume' ? 'active' :'' %> ">
-            <a class="nav-link " href="/jobseeker/resume"
-                >Build/Edit Resume</a
-            >
+            <a class="nav-link " href="/jobseeker/resume">Build/Edit Resume</a>
         </li>
         <li class="nav-item primary-navbar <%= path==='/manage-profile' ? 'active' :'' %>">
-            <a class="nav-link  ml-2" href="/jobseeker/manage-profile"
-                >Manage Profile</a
-            >
+            <a class="nav-link  ml-2" href="/jobseeker/manage-profile">Manage Profile</a>
         </li>
     </ul>
 
