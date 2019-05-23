@@ -1,71 +1,24 @@
 const express = require('express');
 
-//Import the  models
-const User = require('../models/user');
-const Admin = require('../models/admin')
-
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('home', { pageTitle: 'EmployMe', path: '/' });
-});
+//Import the controllers
+const landingControllers = require('../controllers/landing');
 
-router.get('/signup', (req, res) => {
-    res.render('signup', { pageTitle: 'Sign Up', path: '/signup' });
-});
+router.get('/', landingControllers.getHome);
 
-router.post('/signup', (req, res) => {
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password
+router
+    .route('/signup')
+    .get(landingControllers.getSignup)
+    .post(landingControllers.postSignup);
 
-    const user = new User({
-        name: name,
-        email: email,
-        password: password
-    });
-    user.save()
-        .then(response => {
-            console.log('Log: response', response);
-            res.redirect('/login/jobseeker')
-        })
-        .catch(err => {
-            console.log('Log: err', err);
-        });
-});
+router
+    .route('/signup/admin')
+    .get(landingControllers.getAdminSignup)
+    .post(landingControllers.postAdminSignup);
 
-router.get('/signup/admin', (req, res) => {
-    res.render('signup-admin', { pageTitle: 'Admin Login', path: '/signup' });
-});
+router.route('/login/jobseeker').get(landingControllers.getJobseekerLogin);
 
-router.post('/signup/admin', (req,res)=>{
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password
-
-    const admin = new Admin({
-        username: username,
-        email: email,
-        password: password
-    });
-
-    admin.save()
-    .then(response => {
-        console.log('Log: response', response);
-        res.redirect('/login/admin')
-    })
-    .catch(err => {
-        console.log('Log: err', err);
-    });
-})
-
-router.get('/login/jobseeker', (req, res) => {
-    res.render('login-jobseeker', { pageTitle: 'Job-Seeker Login', path: '/login' }).post();
-});
-
-router.get('/login/admin', (req, res) => {
-    res.render('login-admin', { pageTitle: 'Admin Login', path: '/login' });
-});
-
+router.route('/login/admin').get(landingControllers.getAdminLogin);
 
 module.exports = router;
