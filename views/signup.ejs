@@ -1,24 +1,29 @@
 <%- include('partials/head.ejs') %>
-<link rel="stylesheet" href="/css/footer.css">
 </head>
 
 <body>
     <%- include('partials/navbar.ejs') %>
     <div class="p-3 d-flex justify-content-center ">
         <form action="/signup" method="POST">
+
+                <div class="alert alert-danger" role="alert">
+                        This is a danger alert—check it out!
+                </div>
+
+
             <div class="form-group row">
-                <label for="username">Username</label>
+                <label for="name">Name</label>
                 <input
                     type="text"
                     class="form-control"
                     name="name"
-                    id="username"
-                    aria-describedby="usernameHelp"
-                    placeholder="Enter your username"
+                    id="name"
+                    aria-describedby="nameHelp"
+                    placeholder="Enter your name"
                     required
                 />
-                <small id="usernameHelp" class="form-text text-muted"
-                    >This is what you will use to login.</small
+                <small id="ameHelp" class="form-text text-muted"
+                    >Enter your full name.</small
                 >
             </div>
 
@@ -40,7 +45,7 @@
 
             <div class="form-group row">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" />
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
             </div>
 
             <div class="form-group row">
@@ -48,7 +53,7 @@
                 <input
                     type="password"
                     class="form-control"
-                    name="password"
+                    name="password2"
                     id="confirm_password"
                     placeholder="Confirm Password"
                     required
@@ -56,7 +61,7 @@
             </div>
 
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="tos_check" required/>
+                <input type="checkbox" class="form-check-input" id="tos_check" required />
                 <label class="form-check-label" for="tos_check"
                     >I agree to the terms and conditions</label
                 >

@@ -1,23 +1,66 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 //import routes
 const landingRoutes = require('./routes/landing');
 const jobseekerRoutes = require('./routes/jobseeker');
 const adminRoutes = require('./routes/admin');
 
+//import models
+const User = require('./models/user')
+
+const MONGODB_URI = 'mongodb://localhost:27017/employmeDB'
+
 const app = express();
+const store = new MongoDBStore({
+    uri: MONGODB_URI,
+    collection: 'sessions'
+  });
+
+// app.use(
+//     session({
+//         secret: 'keyboard warrior',
+//         resave: false,
+//         saveUninitialized: false
+//     })
+// );
+
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 //Connecting the database
-mongoose.connect('mongodb://localhost:27017/employmeDB',{
-    useNewUrlParser:true,
-    useCreateIndex:true
-})
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
+
+app.use(
+  session({
+    secret: 'my secret',
+    resave: false,
+    saveUninitialized: false,
+    store: store
+  })
+);
+
+app.use((req, res, next) => {
+    if (!req.session.user) {
+      return next();
+    }
+    User.findById(req.session.user._id)
+      .then(user => {
+        req.user = user;
+        next();
+      })
+      .catch(err => console.log(err));
+  });
 
 //Main code starts here
 const sequelize = require('./util/database'); //importing the database
@@ -36,7 +79,6 @@ app.use((req, res, next) => {
 });
 
 //------------------------------SERVER PORT---------------------------
-app.listen(process.env.PORT ||4000, () => {
+app.listen(process.env.PORT || 4000, () => {
     console.log('App listening on port 4000!');
 });
-
