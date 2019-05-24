@@ -71,8 +71,7 @@ exports.postAdminSignup = (req, res) => {
 							res.redirect('/login/admin');
 						});
 					})
-					.catch((err) => {
-					});
+					.catch((err) => {});
 			}
 		}
 	});
@@ -114,4 +113,11 @@ exports.postJobseekerLogin = (req, res) => {
 
 exports.getAdminLogin = (req, res) => {
 	res.render('login-admin', { pageTitle: 'Admin Login', path: '/login' });
+};
+
+exports.postLogout = (req, res, next) => {
+	req.session.destroy((err) => {
+		console.log(err);
+		res.redirect('/');
+	});
 };

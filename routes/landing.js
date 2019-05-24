@@ -21,4 +21,7 @@ router
 
 router.route('/login/admin').get(authControllers.getAdminLogin);
 
+// The logout route will be commmon for the jobseeker as well as admin
+router.post('/logout', authControllers.postLogout)
+
 module.exports = router;

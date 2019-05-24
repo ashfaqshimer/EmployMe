@@ -28,7 +28,9 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/admin/login">Edit User Profile</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item bg-secondary" href="/jobseeker/login">Sign Out</a>
+                <form action="/logout" method="POST">
+                    <button class="dropdown-item bg-secondary" type="submit">Log Out</button>
+                </form>
             </div>
         </li>
     </ul>
