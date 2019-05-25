@@ -19,7 +19,7 @@ router
 	.get(authControllers.getJobseekerLogin)
 	.post(authControllers.postJobseekerLogin);
 
-router.route('/login/admin').get(authControllers.getAdminLogin);
+router.route('/login/admin').get(authControllers.getAdminLogin).post(authControllers.postAdminLogin);
 
 // The logout route will be commmon for the jobseeker as well as admin
 router.post('/logout', authControllers.postLogout)

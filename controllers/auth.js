@@ -51,7 +51,7 @@ exports.postSignup = (req, res) => {
 };
 
 exports.getAdminSignup = (req, res) => {
-	res.render('signup-admin', { pageTitle: 'Admin Login', path: '/signup' });
+	res.render('signup-admin', { pageTitle: 'Admin Login', path: '/signup/admin' });
 };
 
 exports.postAdminSignup = (req, res) => {
@@ -59,32 +59,57 @@ exports.postAdminSignup = (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	Admin.findOne({ email: email }, (err, foundAdmin) => {
-		if (!err) {
-			if (foundAdmin) {
-				//display error saying admin exists
-				console.log(foundAdmin);
-				res.redirect('/signup/admin');
-			} else {
-				//hash the password
-				bcrypt
-					.hash(password, 12)
-					.then((hashedPassword) => {
-						//save the admin and redirect
-						const admin = new Admin({
-							username : username,
-							email    : email,
-							password : hashedPassword
-						});
-						admin.save().then((response) => {
-							res.redirect('/login/admin');
-						});
-					})
-					.catch((err) => {});
+	Admin.findOne({ email: email })
+		.then((userDoc) => {
+			if (userDoc) {
+				return res.redirect('/signup');
 			}
-		}
-	});
+			return bcrypt
+				.hash(password, 12)
+				.then((hashedPassword) => {
+					const admin = new Admin({
+						username : username,
+						email    : email,
+						password : hashedPassword
+					});
+
+					return admin.save();
+				})
+				.then((result) => {
+					res.redirect('/login/admin');
+				});
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 };
+
+// 	Admin.findOne({ email: email }, (err, foundAdmin) => {
+// 		if (!err) {
+// 			if (foundAdmin) {
+// 				//display error saying admin exists
+// 				console.log(foundAdmin);
+// 				res.redirect('/signup/admin');
+// 			} else {
+// 				//hash the password
+// 				bcrypt
+// 					.hash(password, 12)
+// 					.then((hashedPassword) => {
+// 						//save the admin and redirect
+// 						const admin = new Admin({
+// 							username : username,
+// 							email    : email,
+// 							password : hashedPassword
+// 						});
+// 						admin.save().then((response) => {
+// 							res.redirect('/login/admin');
+// 						});
+// 					})
+// 					.catch((err) => {});
+// 			}
+// 		}
+// 	});
+// };
 
 exports.getJobseekerLogin = (req, res) => {
 	res.render('login-jobseeker', { pageTitle: 'Job-Seeker Login', path: '/login' });
@@ -122,6 +147,36 @@ exports.postJobseekerLogin = (req, res) => {
 
 exports.getAdminLogin = (req, res) => {
 	res.render('login-admin', { pageTitle: 'Admin Login', path: '/login' });
+};
+
+exports.postAdminLogin = (req, res) => {
+	const username = req.body.username;
+	const password = req.body.password;
+	Admin.findOne({ username: username })
+		.then((admin) => {
+			if (!admin) {
+				console.log('No admin found!');
+				return res.redirect('/login/jobseeker');
+			}
+			bcrypt
+				.compare(password, admin.password)
+				.then((doMatch) => {
+					if (doMatch) {
+						req.session.isLoggedIn = true;
+						req.session.admin = admin;
+						return req.session.save((err) => {
+							console.log(err);
+							res.redirect('/admin/');
+						});
+					}
+					res.redirect('/login/admin');
+				})
+				.catch((err) => {
+					console.log(err);
+					res.redirect('/login/admin');
+				});
+		})
+		.catch((err) => console.log(err));
 };
 
 exports.postLogout = (req, res, next) => {
