@@ -19,8 +19,8 @@ const userSchema = new Schema({
 	},
 	password : { type: String, required: true, minlength: 6 },
 	resumeId : {
-		type : Schema.Types.ObjectId,
-		ref  : 'Resume',
+		type     : Schema.Types.ObjectId,
+		ref      : 'Resume',
 	}
 });
 

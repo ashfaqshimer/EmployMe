@@ -16,7 +16,10 @@ router
 	.get(isAuth, jobseekerControllers.getResumeSummary)
 	.post(isAuth, jobseekerControllers.postResumeSummary);
 
-router.route('/resume/work-experience').get(isAuth, jobseekerControllers.getResumeWorkExperience);
+router
+	.route('/resume/work-experience')
+	.get(isAuth, jobseekerControllers.getResumeWorkExperience)
+	.post(isAuth, jobseekerControllers.postResumeWorkExperience);
 
 router.route('/resume/education').get(isAuth, jobseekerControllers.getResumeEducation);
 

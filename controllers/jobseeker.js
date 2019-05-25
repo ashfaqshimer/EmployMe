@@ -52,6 +52,40 @@ exports.getResumeWorkExperience = (req, res) => {
 	});
 };
 
+exports.postResumeWorkExperience = (req, res) => {
+	const userId = req.session.user._id;
+	const title = req.body.title;
+	const category = req.body.category;
+	const duration = req.body.duration;
+	const startDate = req.body.startDate;
+	const endDate = req.body.endDate;
+	const description = req.body.description;
+
+	Resume.findOne({ userId: userId })
+		.then((userResume) => {
+			const newExperience = {
+				title       : title,
+				jobCategory : category,
+				startDate   : startDate,
+				endDate     : endDate,
+				duration    : duration,
+				description : description
+			};
+
+			const updatedWorkExperience = [ ...userResume.workExperience ];
+			updatedWorkExperience.push(newExperience);
+			userResume.workExperience = updatedWorkExperience;
+			return userResume.save();
+		})
+		.then((result) => {
+			console.log('Log: exports.postResumeWorkExperience -> result', result)
+			res.redirect('/jobseeker/resume/work-experience');
+		})
+		.catch((err) => {
+			console.log('Log: exports.postResumeSummary -> err', err);
+		});
+};
+
 exports.getResumeEducation = (req, res) => {
 	res.render('jobseeker/resume/education', {
 		pageTitle : 'Resume - Education',
