@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../models/user');
 const Resume = require('../models/resume');
+const Lookup = require('../models/lookup');
 
 exports.getResume = (req, res) => {
 	res.render('jobseeker/resume/instructions', {
@@ -22,15 +23,12 @@ exports.getResumeSummary = (req, res) => {
 				data      : foundResume.summary
 			});
 		})
-		.catch((err) => {
-			console.log('Log: exports.getResumeSummary -> err', err);
-		});
+		.catch((err) => {});
 };
 
 exports.postResumeSummary = (req, res) => {
 	const userId = req.session.user._id;
 	const summary = req.body.summary;
-
 	Resume.findOne({ userId: userId })
 		.then((userResume) => {
 			userResume.summary = summary;
@@ -39,9 +37,7 @@ exports.postResumeSummary = (req, res) => {
 		.then((result) => {
 			res.redirect('/jobseeker/resume/summary');
 		})
-		.catch((err) => {
-			console.log('Log: exports.postResumeSummary -> err', err);
-		});
+		.catch((err) => {});
 };
 
 exports.getResumeWorkExperience = (req, res) => {
@@ -78,12 +74,9 @@ exports.postResumeWorkExperience = (req, res) => {
 			return userResume.save();
 		})
 		.then((result) => {
-			console.log('Log: exports.postResumeWorkExperience -> result', result);
 			res.redirect('/jobseeker/resume/work-experience');
 		})
-		.catch((err) => {
-			console.log('Log: exports.postResumeSummary -> err', err);
-		});
+		.catch((err) => {});
 };
 
 exports.getResumeEducation = (req, res) => {
@@ -105,9 +98,7 @@ exports.getResumeSkills = (req, res) => {
 				data      : foundResume.skills
 			});
 		})
-		.catch((err) => {
-			console.log('Log: exports.getResumeSummary -> err', err);
-		});
+		.catch((err) => {});
 };
 
 exports.postResumeSkills = (req, res) => {
@@ -116,8 +107,8 @@ exports.postResumeSkills = (req, res) => {
 
 	Resume.findOne({ userId: userId })
 		.then((userResume) => {
-			if (userResume.skills.length>=10){
-				return console.log("Maximum reached!")
+			if (userResume.skills.length >= 10) {
+				return console.log('Maximum reached!');
 			}
 			const newSkill = {
 				skill : skill
@@ -129,12 +120,9 @@ exports.postResumeSkills = (req, res) => {
 			return userResume.save();
 		})
 		.then((result) => {
-			console.log('Log: exports.postResumeWorkExperience -> result', result);
 			res.redirect('/jobseeker/resume/skills');
 		})
-		.catch((err) => {
-			console.log('Log: exports.postResumeSummary -> err', err);
-		});
+		.catch((err) => {});
 };
 
 exports.postDeleteSkill = (req, res) => {
@@ -147,12 +135,9 @@ exports.postDeleteSkill = (req, res) => {
 			return userResume.save();
 		})
 		.then((result) => {
-			console.log('Log: exports.postResumeWorkExperience -> result', result);
 			res.redirect('/jobseeker/resume/skills');
 		})
-		.catch((err) => {
-			console.log('Log: exports.postResumeSummary -> err', err);
-		});
+		.catch((err) => {});
 };
 
 exports.getResumePersonalInfo = (req, res) => {
@@ -172,8 +157,71 @@ exports.getResumeGenerateCV = (req, res) => {
 };
 
 exports.getManageProfile = (req, res) => {
-	res.render('jobseeker/manage-profile', {
-		pageTitle : 'Manage Profile',
-		path      : '/manage-profile'
+	const userId = req.session.user._id;
+	let alStreamOptions = [];
+	let bachelors = [];
+	let masters = [];
+	let phd = [];
+	Lookup.findOne({ type: 'alStream' }).then((result) => {
+		alStreamOptions = [ ...result.values ];
 	});
+	Lookup.findOne({ type: 'bachelors' }).then((result) => {
+		bachelors = [ ...result.values ];
+	});
+	Lookup.findOne({ type: 'masters' }).then((result) => {
+		masters = [ ...result.values ];
+	});
+	Lookup.findOne({ type: 'phd' }).then((result) => {
+		phd = [ ...result.values ];
+	});
+
+	User.findById(userId)
+		.then((user) => {
+			res.render('jobseeker/manage-profile', {
+				pageTitle : 'Manage Profile',
+				path      : '/manage-profile',
+				data      : user.profile,
+				alStream  : alStreamOptions,
+				phd       : phd
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};
+
+exports.postManageProfile = (req, res) => {
+	const userId = req.session.user._id;
+	const sector = req.body.sector;
+	const education = req.body.education;
+	const olPasses = req.body.olPasses;
+	const alPasses = req.body.alPasses;
+	const alStream = req.body.alStream;
+	const diploma = req.body.diploma;
+	const bachelors = req.body.bachelors;
+	const masters = req.body.masters;
+	const phd = req.body.phd;
+	const professionalQualification = req.body.professional;
+
+	User.findById(userId)
+		.then((user) => {
+			const newProfile = {
+				preferredJobSector        : sector,
+				highestCompletedEducation : education,
+				olPasses                  : olPasses,
+				alPasses                  : alPasses,
+				alStream                  : alStream,
+				diploma                   : diploma,
+				bachelors                 : bachelors,
+				masters                   : masters,
+				phd                       : phd,
+				professionalQualification : professionalQualification
+			};
+			user.profile = newProfile;
+			return user.save();
+		})
+		.then((result) => {
+			res.redirect('/jobseeker/manage-profile');
+		})
+		.catch((err) => {});
 };

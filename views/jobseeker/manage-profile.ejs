@@ -5,24 +5,24 @@
     <%- include('../partials/jobseeker/jobseeker-navbar.ejs') %>
     <main class="container-custom">
         <form
-            class="manage-profile-form border border-warning"
+            class="manage-profile-form border border-primary"
             action="/jobseeker/manage-profile"
             method="POST"
         >
             <div class="row">
                 <div class="form-group col">
                     <label for="job-sector">Preferred Job Sector</label>
-                    <select class="form-control" name="sector" id="job-sector">
-                        <option value="" selected disabled hidden>--Select one--</option>
-                        <option value="">Accountancy, banking and finance.</option>
-                        <option value="">Business, consulting and management.</option>
-                        <option value="">Charity and voluntary work.</option>
-                        <option value="">Creative arts and design.</option>
-                        <option value="">Energy and utilities.</option>
-                        <option value="">Engineering and manufacturing.</option>
-                        <option value="">Environment and agriculture.</option>
-                        <option value="">Healthcare.</option>
-                        <option value="IT">Information Technology.</option>
+                    <select class="form-control" name="sector" id="job-sector" >
+                        <option value="" <%= !data.preferredJobSector ? 'selected' :null %> disabled hidden>--Select one--</option>
+                        <option value="Accountancy" <%= data.preferredJobSector==="Accountancy" ? 'selected' :null %>>Accountancy, banking and finance.</option>
+                        <option value="Business" <%= data.preferredJobSector==="Business" ? 'selected' :null %>>Business, consulting and management.</option>
+                        <option value="Charity" <%= data.preferredJobSector==="Charity" ? 'selected' :null %>>Charity and voluntary work.</option>
+                        <option value="Arts" <%= data.preferredJobSector==="Arts" ? 'selected' :null %>>Creative arts and design.</option>
+                        <option value="Energy" <%= data.preferredJobSector==="Energy" ? 'selected' :null %>>Energy and utilities.</option>
+                        <option value="Engineering" <%= data.preferredJobSector==="Engineering" ? 'selected' :null %>>Engineering and manufacturing.</option>
+                        <option value="Environment" <%= data.preferredJobSector==="Environment" ? 'selected' :null %>>Environment and agriculture.</option>
+                        <option value="Healthcare" <%= data.preferredJobSector==="Healthcare" ? 'selected' :null %>>Healthcare.</option>
+                        <option value="IT" <%= data.preferredJobSector==="IT" ? 'selected' :null %>>Information Technology.</option>
                     </select>
                 </div>
                 <div class="form-group col">
@@ -41,11 +41,11 @@
                 <div class="row">
                 <div class="form-group col">
                     <label for="">Number of GCSE O/Level Passes</label>
-                    <input class="form-control" type="number" min="0" max="10" />
+                    <input class="form-control" name="olPasses" type="number" min="0" max="10" />
                 </div>
                 <div class="form-group col">
                     <label for="">Number of GCSE A/Level Passes</label>
-                    <input class="form-control" type="number" min="0" max="10" />
+                    <input class="form-control" name="alPasses" type="number" min="0" max="10" />
                 </div>
             </div>
   
@@ -55,7 +55,7 @@
             <p>Select where applicable, else select none</p>
             <div class="form-group">
                 <label for="">A/Level Stream</label>
-                <select class="form-control input" name="" id="">
+                <select class="form-control input" name="alStream" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
                     <option value="">Science</option>
                     <option value="">Commerce</option>
@@ -66,7 +66,7 @@
             </div>
             <div class="form-group">
                 <label for="">Diploma</label>
-                <select class="form-control" name="" id="">
+                <select class="form-control" name="diploma" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
                     <option value="">Business Studies </option>
                     <option value="">Management Studies </option>
@@ -88,64 +88,67 @@
             </div>
             <div class="form-group">
                 <label for="">Bachelor's Degree</label>
-                <select  class="form-control" name="" id="">
+                <select  class="form-control" name="bachelors" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
-                    <option value="">Business</option>
-                    <option value="">Health professions and related programs</option>
-                    <option value="">Social sciences and history</option>
-                    <option value="">Psychology</option>
-                    <option value="">Biological and biomedical sciences</option>
-                    <option value="">Engineering</option>
-                    <option value="">Visual and performing arts</option>
-                    <option value="">Education</option>
-                    <option value="">Communication, journalism, and related programs</option>
-                    <option value="">Homeland security, law enforcement, and firefighting</option>
-                    <option value="">Computer and information sciences</option>
+                    <option value="Business">Business</option>
+                    <option value="Health">Health professions and related programs</option>
+                    <option value="Social Sciences">Social sciences and history</option>
+                    <option value="Psychology">Psychology</option>
+                    <option value="Biology">Biological and biomedical sciences</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Performing Arts">Visual and performing arts</option>
+                    <option value="Education">Education</option>
+                    <option value="Communication">Communication, journalism, and related programs</option>
+                    <option value="Homeland security">Homeland security, law enforcement, and firefighting</option>
+                    <option value="IT">Computer and information sciences</option>
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="">Masters</label>
-                <select class="form-control" name="" id="">
+                <select class="form-control" name="masters" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
-                    <option value="">Business</option>
-                    <option value="">Health professions and related programs</option>
-                    <option value="">Social sciences and history</option>
-                    <option value="">Psychology</option>
-                    <option value="">Biological and biomedical sciences</option>
-                    <option value="">Engineering</option>
-                    <option value="">Visual and performing arts</option>
-                    <option value="">Education</option>
-                    <option value="">Communication, journalism, and related programs</option>
-                    <option value="">Homeland security, law enforcement, and firefighting</option>
-                    <option value="">Computer and information sciences</option>
+                    <option value="Business">Business</option>
+                    <option value="Health">Health professions and related programs</option>
+                    <option value="Social Sciences">Social sciences and history</option>
+                    <option value="Psychology">Psychology</option>
+                    <option value="Biology">Biological and biomedical sciences</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Performing Arts">Visual and performing arts</option>
+                    <option value="Education">Education</option>
+                    <option value="Communication">Communication, journalism, and related programs</option>
+                    <option value="Homeland security">Homeland security, law enforcement, and firefighting</option>
+                    <option value="IT">Computer and information sciences</option>
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="">PhD</label>
-                <select class="form-control" name="" id="">
+                <select class="form-control" name="phd" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
-                    <option value="">Business</option>
-                    <option value="">Health professions and related programs</option>
-                    <option value="">Social sciences and history</option>
-                    <option value="">Psychology</option>
-                    <option value="">Biological and biomedical sciences</option>
-                    <option value="">Engineering</option>
-                    <option value="">Visual and performing arts</option>
-                    <option value="">Education</option>
-                    <option value="">Communication, journalism, and related programs</option>
-                    <option value="">Homeland security, law enforcement, and firefighting</option>
-                    <option value="">Computer and information sciences</option>
+                    <% phd.forEach(option=>{ %>
+                        <option value="<%=option.value%>" <%= data.phd===option.value ? 'selected' :null %>><%=option.label%> </option>
+                    <% }); %>
+                    <!-- <option value="Business" <%= data.phd==="Business" ? 'selected' :null %>>Business</option>
+                    <option value="Health">Health professions and related programs</option>
+                    <option value="Social Sciences">Social sciences and history</option>
+                    <option value="Psychology">Psychology</option>
+                    <option value="Biology">Biological and biomedical sciences</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Performing Arts">Visual and performing arts</option>
+                    <option value="Education" <%= data.phd==="Education" ? 'selected' :null %>>Education</option>
+                    <option value="Communication">Communication, journalism, and related programs</option>
+                    <option value="Homeland security">Homeland security, law enforcement, and firefighting</option>
+                    <option value="IT">Computer and information sciences</option> -->
                     <optgroup>""</optgroup>
-                    <option value="">None</option>
+                    <option value="None">None</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="">Professional Qualifications</label>
-                <select class="form-control" name="" id="">
+                <select class="form-control" name="professional" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
                     <option value="">Association of Chartered Certified Accountants (ACCA)</option>
                     <option value="">BCS - The Chartered Institute for IT</option>
@@ -168,7 +171,7 @@
                 you may do so by clicking on the button below:                
             </p>
             <a class="btn btn-warning" href="/jobseeker/resume/skills">Update Skills</a>
-            <a class="btn btn-success" href="/jobseeker/resume/experience">Update Work Experience</a>
+            <a class="btn btn-success" href="/jobseeker/resume/work-experience">Update Work Experience</a>
     
  
         </form>

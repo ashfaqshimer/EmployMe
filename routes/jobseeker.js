@@ -28,13 +28,16 @@ router
 	.get(isAuth, jobseekerControllers.getResumeSkills)
 	.post(isAuth, jobseekerControllers.postResumeSkills);
 
-router.post('/resume/skills/delete', isAuth, jobseekerControllers.postDeleteSkill)	
+router.post('/resume/skills/delete', isAuth, jobseekerControllers.postDeleteSkill);
 
 router.route('/resume/personal-info').get(isAuth, jobseekerControllers.getResumePersonalInfo);
 
 router.route('/resume/generate-cv').get(isAuth, jobseekerControllers.getResumeGenerateCV);
 
 //jobseeker manage profile
-router.route('/manage-profile').get(isAuth, jobseekerControllers.getManageProfile);
+router
+	.route('/manage-profile')
+	.get(isAuth, jobseekerControllers.getManageProfile)
+	.post(isAuth, jobseekerControllers.postManageProfile);
 
 module.exports = router;
