@@ -78,7 +78,7 @@ exports.postResumeWorkExperience = (req, res) => {
 			return userResume.save();
 		})
 		.then((result) => {
-			console.log('Log: exports.postResumeWorkExperience -> result', result)
+			console.log('Log: exports.postResumeWorkExperience -> result', result);
 			res.redirect('/jobseeker/resume/work-experience');
 		})
 		.catch((err) => {
@@ -95,11 +95,64 @@ exports.getResumeEducation = (req, res) => {
 };
 
 exports.getResumeSkills = (req, res) => {
-	res.render('jobseeker/resume/skills', {
-		pageTitle : 'Resume-Skills',
-		path      : '/resume',
-		tabpath   : '/skills'
-	});
+	const userId = req.session.user._id;
+	Resume.findOne({ userId: userId })
+		.then((foundResume) => {
+			res.render('jobseeker/resume/skills', {
+				pageTitle : 'Resume-Skills',
+				path      : '/resume',
+				tabpath   : '/skills',
+				data      : foundResume.skills
+			});
+		})
+		.catch((err) => {
+			console.log('Log: exports.getResumeSummary -> err', err);
+		});
+};
+
+exports.postResumeSkills = (req, res) => {
+	const userId = req.session.user._id;
+	const skill = req.body.skill;
+
+	Resume.findOne({ userId: userId })
+		.then((userResume) => {
+			if (userResume.skills.length>=10){
+				return console.log("Maximum reached!")
+			}
+			const newSkill = {
+				skill : skill
+			};
+
+			const updatedSkills = [ ...userResume.skills ];
+			updatedSkills.push(newSkill);
+			userResume.skills = updatedSkills;
+			return userResume.save();
+		})
+		.then((result) => {
+			console.log('Log: exports.postResumeWorkExperience -> result', result);
+			res.redirect('/jobseeker/resume/skills');
+		})
+		.catch((err) => {
+			console.log('Log: exports.postResumeSummary -> err', err);
+		});
+};
+
+exports.postDeleteSkill = (req, res) => {
+	const userId = req.session.user._id;
+	const skillId = req.body.skillId;
+
+	Resume.findOne({ userId: userId })
+		.then((userResume) => {
+			userResume.skills.pull(skillId);
+			return userResume.save();
+		})
+		.then((result) => {
+			console.log('Log: exports.postResumeWorkExperience -> result', result);
+			res.redirect('/jobseeker/resume/skills');
+		})
+		.catch((err) => {
+			console.log('Log: exports.postResumeSummary -> err', err);
+		});
 };
 
 exports.getResumePersonalInfo = (req, res) => {

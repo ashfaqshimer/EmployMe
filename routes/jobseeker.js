@@ -23,7 +23,12 @@ router
 
 router.route('/resume/education').get(isAuth, jobseekerControllers.getResumeEducation);
 
-router.route('/resume/skills').get(isAuth, jobseekerControllers.getResumeSkills);
+router
+	.route('/resume/skills')
+	.get(isAuth, jobseekerControllers.getResumeSkills)
+	.post(isAuth, jobseekerControllers.postResumeSkills);
+
+router.post('/resume/skills/delete', isAuth, jobseekerControllers.postDeleteSkill)	
 
 router.route('/resume/personal-info').get(isAuth, jobseekerControllers.getResumePersonalInfo);
 

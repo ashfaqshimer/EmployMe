@@ -1,57 +1,121 @@
 textarea {
-    resize: none;
+	resize: none;
 }
 
 #navbar .active {
-    border: 2px solid #33313b;
-    background-color: #4592af;
-    border-radius: 10px;
+	border: 2px solid #33313b;
+	background-color: #4592af;
+	border-radius: 10px;
 }
 
 #side-tab {
-    margin: 10px 5px;
-    display: inline-block;
-    padding: 5px;
-    height: 100%;
-    width: 20%;
-    box-sizing: border-box;
+	margin: 10px 5px;
+	display: inline-block;
+	padding: 5px;
+	height: 100%;
+	width: 20%;
+	box-sizing: border-box;
 }
 
 main.container {
-    margin: 10px 1px;
-    display: inline-block;
-    width: 75%;
-    box-sizing: border-box;
+	margin: 10px 1px;
+	display: inline-block;
+	width: 75%;
+	box-sizing: border-box;
 }
 
 .resume-form {
-    text-align: center;
-    padding: 5px;
+	text-align: center;
+	padding: 5px;
 }
 
 .skill-submit {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-    padding: 10px;
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	padding: 10px;
 }
 
 .container-custom {
-    margin: 10px auto;
-    padding: 10px;
-    width: 70%;
+	margin: 10px auto;
+	padding: 10px;
+	width: 70%;
 }
 
 .manage-profile-form {
-    border: 1px solid;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    line-height: 1.8;
-    background: #f9f8eb;
-    box-shadow: #4592af
+	border: 1px solid;
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 1.8;
+	background: #f9f8eb;
+	box-shadow: #4592af;
 }
 
 .manage-profile-body {
-    background: #ffffff;
+	background: #ffffff;
 }
+
+.skill-delete-btn {
+	display: inline;
+}
+
+.list-group-item {
+	display: inline-block;
+	width: 45%;
+}
+
+.list-type2 {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.list-type2 ol {
+	counter-reset: li;
+	list-style: none;
+	*list-style: decimal;
+	font-size: 15px;
+	font-family: 'Raleway', sans-serif;
+	padding: 0;
+	margin-bottom: 4em;
+}
+
+.list-type2 ol ol {
+	margin: 0 0 0 2em;
+}
+
+.list-type2 a {
+	position: relative;
+	display: block;
+	padding: .4em .4em .4em 2em;
+	*padding: .4em;
+	margin: .5em 0;
+	background: #fc756f;
+	color: #444;
+	text-decoration: none;
+	transition: all .2s ease-in-out;
+}
+
+.list-type2 a:hover {
+	background: #d6d4d4;
+	text-decoration: none;
+	transform: scale(1.1);
+}
+
+.list-type2 a:before {
+	content: counter(li);
+	counter-increment: li;
+	position: absolute;
+	left: -1.3em;
+	top: 50%;
+	margin-top: -1.3em;
+	background: #fc756f;
+	height: 2em;
+	width: 2em;
+	line-height: 2em;
+	border: .3em solid #fff;
+	text-align: center;
+	font-weight: bold;
+	color: #fff;
+}
+
