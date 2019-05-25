@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 //Import the  models
 const User = require('../models/user');
 const Admin = require('../models/admin');
+const Resume = require('../models/resume');
 
 exports.getHome = (req, res) => {
 	res.render('home', { pageTitle: 'EmployMe', path: '/' });
@@ -30,9 +31,17 @@ exports.postSignup = (req, res) => {
 						email    : email,
 						password : hashedPassword
 					});
+
 					return user.save();
 				})
 				.then((result) => {
+					const resume = new Resume({
+						userId : result._id
+					});
+					return resume.save();
+				})
+				.then((result) => {
+					console.log('Log: exports.postSignup -> result', result);
 					res.redirect('/login/jobseeker');
 				});
 		})

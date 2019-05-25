@@ -17,7 +17,11 @@ const userSchema = new Schema({
 		trim      : true,
 		lowercase : true
 	},
-	password : { type: String, required: true, minlength: 6 }
+	password : { type: String, required: true, minlength: 6 },
+	resumeId : {
+		type : Schema.Types.ObjectId,
+		ref  : 'Resume',
+	}
 });
 
 module.exports = mongoose.model('User', userSchema);
