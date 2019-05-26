@@ -13,6 +13,7 @@ const adminRoutes = require('./routes/admin');
 const User = require('./models/user');
 
 const MONGODB_URI = 'mongodb://localhost:27017/employmeDB';
+// const MONGODB_URI = 'mongodb+srv://admin-ashfaq:admin123@cluster0-nkvw7.mongodb.net/employmeDB';
 
 const app = express();
 const store = new MongoDBStore({
