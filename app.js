@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
-const generateLookup = require(__dirname + '/lookupValues.js');
-
 //import routes
 const landingRoutes = require('./routes/landing');
 const jobseekerRoutes = require('./routes/jobseeker');
@@ -13,7 +11,6 @@ const adminRoutes = require('./routes/admin');
 
 //import models
 const User = require('./models/user');
-const Lookup = require('./models/lookup');
 
 const MONGODB_URI = 'mongodb://localhost:27017/employmeDB';
 
@@ -27,12 +24,6 @@ const store = new MongoDBStore({
 mongoose.connect(MONGODB_URI, {
 	useNewUrlParser : true,
 	useCreateIndex  : true
-});
-
-Lookup.countDocuments((err, count) => {
-	if (count === 0) {
-		generateLookup();
-	}
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));

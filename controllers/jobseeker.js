@@ -1,6 +1,5 @@
 const User = require('../models/user');
 const Resume = require('../models/resume');
-const Lookup = require('../models/lookup');
 
 const getValues = require('../getValues');
 
@@ -158,40 +157,6 @@ exports.getResumeGenerateCV = (req, res) => {
 
 exports.getManageProfile = (req, res) => {
 	const userId = req.session.user._id;
-	// let alStream = null;
-	// let bachelors = null;
-	// let masters = null;
-	// let phd = null;
-	// let jobSector = null;
-	// let educationLevel = null;
-	// let diploma = null;
-	// let professional = null;
-
-
-	// Lookup.findOne({ type: 'alStream' }).then((result) => {
-	// 	alStream = [ ...result.values ];
-	// });
-	// Lookup.findOne({ type: 'bachelors' }).then((result) => {
-	// 	bachelors = [ ...result.values ];
-	// });
-	// Lookup.findOne({ type: 'masters' }).then((result) => {
-	// 	masters = [ ...result.values ];
-	// });
-	// Lookup.findOne({ type: 'phd' }).then((result) => {
-	// 	phd = [ ...result.values ];
-	// });
-	// Lookup.findOne({ type: 'jobSector' }).then((result) => {
-	// 	jobSector = [ ...result.values ];
-	// });
-	// Lookup.findOne({ type: 'educationLevel' }).then((result) => {
-	// 	educationLevel = [ ...result.values ];
-	// });
-	// Lookup.findOne({ type: 'diploma' }).then((result) => {
-	// 	diploma = [ ...result.values ];
-	// });
-	// Lookup.findOne({ type: 'professional' }).then((result) => {
-	// 	professional = [ ...result.values ];
-	// });
 
 	User.findById(userId)
 		.then((user) => {
@@ -217,7 +182,7 @@ exports.getManageProfile = (req, res) => {
 exports.postManageProfile = (req, res) => {
 	const userId = req.session.user._id;
 	const sector = req.body.sector;
-	const education = req.body.education;
+	const highestCompletedEducation = req.body.education;
 	const olPasses = req.body.olPasses;
 	const alPasses = req.body.alPasses;
 	const alStream = req.body.alStream;
@@ -231,7 +196,7 @@ exports.postManageProfile = (req, res) => {
 		.then((user) => {
 			const newProfile = {
 				preferredJobSector        : sector,
-				highestCompletedEducation : education,
+				highestCompletedEducation : highestCompletedEducation,
 				olPasses                  : olPasses,
 				alPasses                  : alPasses,
 				alStream                  : alStream,

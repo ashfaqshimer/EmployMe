@@ -17,15 +17,6 @@
                         <% jobSector.forEach(option=>{ %>
                             <option value="<%=option.value%>" <%= data.preferredJobSector===option.value ? 'selected' :null %>><%=option.label%> </option>
                         <% }); %>
-                        <!-- <option value="Accountancy" <%= data.preferredJobSector==="Accountancy" ? 'selected' :null %>>Accountancy, banking and finance.</option>
-                        <option value="Business" <%= data.preferredJobSector==="Business" ? 'selected' :null %>>Business, consulting and management.</option>
-                        <option value="Charity" <%= data.preferredJobSector==="Charity" ? 'selected' :null %>>Charity and voluntary work.</option>
-                        <option value="Arts" <%= data.preferredJobSector==="Arts" ? 'selected' :null %>>Creative arts and design.</option>
-                        <option value="Energy" <%= data.preferredJobSector==="Energy" ? 'selected' :null %>>Energy and utilities.</option>
-                        <option value="Engineering" <%= data.preferredJobSector==="Engineering" ? 'selected' :null %>>Engineering and manufacturing.</option>
-                        <option value="Environment" <%= data.preferredJobSector==="Environment" ? 'selected' :null %>>Environment and agriculture.</option>
-                        <option value="Healthcare" <%= data.preferredJobSector==="Healthcare" ? 'selected' :null %>>Healthcare.</option>
-                        <option value="IT" <%= data.preferredJobSector==="IT" ? 'selected' :null %>>Information Technology.</option> -->
                     </select>
                 </div>
                 <div class="form-group col">
@@ -35,23 +26,17 @@
                         <% educationLevel.forEach(option=>{ %>
                             <option value="<%=option.value%>" <%= data.highestCompletedEducation===option.value ? 'selected' :null %>><%=option.label%> </option>
                         <% }); %>
-                        <!-- <option value="1">Junior School</option>
-                        <option value="2">High School</option>
-                        <option value="3">Diploma</option>
-                        <option value="4">Undergratuate Degree</option>
-                        <option value="5">Masters</option>
-                        <option value="6">Ph.D</option> -->
                     </select>
                 </div>
             </div>
                 <div class="row">
                 <div class="form-group col">
                     <label for="">Number of GCSE O/Level Passes</label>
-                    <input class="form-control" name="olPasses" type="number" min="0" max="10" />
+                    <input value= "<%=data.olPasses%>" class="form-control" name="olPasses" type="number" min="0" max="10" />
                 </div>
                 <div class="form-group col">
                     <label for="">Number of GCSE A/Level Passes</label>
-                    <input class="form-control" name="alPasses" type="number" min="0" max="10" />
+                    <input value= "<%=data.alPasses%>" class="form-control" name="alPasses" type="number" min="0" max="10" />
                 </div>
             </div>
   
@@ -66,9 +51,6 @@
                     <% alStream.forEach(option=>{ %>
                         <option value="<%=option.value%>" <%= data.alStream===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
-                    <!-- <option value="Science">Science</option>
-                    <option value="Commerce">Commerce</option>
-                    <option value="Arts">Arts</option> -->
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
@@ -80,20 +62,6 @@
                     <% diploma.forEach(option=>{ %>
                         <option value="<%=option.value%>" <%= data.diploma===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
-                    <!-- <option value="">Business Studies </option>
-                    <option value="">Management Studies </option>
-                    <option value="">Technology Studies </option>
-                    <option value="">Design Studies </option>
-                    <option value="">Economic Studies </option>
-                    <option value="">Tourism and Hospitality </option>
-                    <option value="">Art Studies </option>
-                    <option value="">Food and Beverage Studies </option>
-                    <option value="">Computer Science </option>
-                    <option value="">Business </option>
-                    <option value="">Engineering Studies </option>
-                    <option value="">Journalism and Mass Communication </option>
-                    <option value="">Administration Studies </option>
-                    <option value="">Marketing Studies </option> -->
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
@@ -105,17 +73,6 @@
                     <% bachelors.forEach(option=>{ %>
                         <option value="<%=option.value%>" <%= data.bachelors===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
-                    <!-- <option value="Business">Business</option>
-                    <option value="Health">Health professions and related programs</option>
-                    <option value="Social Sciences">Social sciences and history</option>
-                    <option value="Psychology">Psychology</option>
-                    <option value="Biology">Biological and biomedical sciences</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Performing Arts">Visual and performing arts</option>
-                    <option value="Education">Education</option>
-                    <option value="Communication">Communication, journalism, and related programs</option>
-                    <option value="Homeland security">Homeland security, law enforcement, and firefighting</option>
-                    <option value="IT">Computer and information sciences</option> -->
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
@@ -127,17 +84,6 @@
                     <% masters.forEach(option=>{ %>
                         <option value="<%=option.value%>" <%= data.masters===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
-                    <!-- <option value="Business">Business</option>
-                    <option value="Health">Health professions and related programs</option>
-                    <option value="Social Sciences">Social sciences and history</option>
-                    <option value="Psychology">Psychology</option>
-                    <option value="Biology">Biological and biomedical sciences</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Performing Arts">Visual and performing arts</option>
-                    <option value="Education">Education</option>
-                    <option value="Communication">Communication, journalism, and related programs</option>
-                    <option value="Homeland security">Homeland security, law enforcement, and firefighting</option>
-                    <option value="IT">Computer and information sciences</option> -->
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
@@ -149,17 +95,6 @@
                     <% phd.forEach(option=>{ %>
                         <option value="<%=option.value%>" <%= data.phd===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
-                    <!-- <option value="Business" <%= data.phd==="Business" ? 'selected' :null %>>Business</option>
-                    <option value="Health">Health professions and related programs</option>
-                    <option value="Social Sciences">Social sciences and history</option>
-                    <option value="Psychology">Psychology</option>
-                    <option value="Biology">Biological and biomedical sciences</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Performing Arts">Visual and performing arts</option>
-                    <option value="Education" <%= data.phd==="Education" ? 'selected' :null %>>Education</option>
-                    <option value="Communication">Communication, journalism, and related programs</option>
-                    <option value="Homeland security">Homeland security, law enforcement, and firefighting</option>
-                    <option value="IT">Computer and information sciences</option> -->
                     <optgroup>""</optgroup>
                     <option value="None">None</option>
                 </select>
@@ -171,14 +106,6 @@
                     <% professional.forEach(option=>{ %>
                         <option value="<%=option.value%>" <%= data.professionalQualification===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
-                    <!-- <option value="">Association of Chartered Certified Accountants (ACCA)</option>
-                    <option value="">BCS - The Chartered Institute for IT</option>
-                    <option value=""
-                        >Chartered Institute of Personnel and Development (CIPD)</option
-                    >
-                    <option value="">Institution of Civil Engineers (ICE)</option>
-                    <option value="">Royal Institution of Chartered Surveyors (RICS).</option> -->
-
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
