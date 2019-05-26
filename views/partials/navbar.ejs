@@ -7,11 +7,11 @@
         <li class="nav-item">
             <a class="nav-link" href="/#about">About</a>
         </li>
-        <li class="nav-item <%= path==='/signup' ? 'active' :'' %>">
-            <a class="nav-link" href="/signup">Sign up</a>
-        </li>
-        <li class="admin-nav-item <%= path==='/signup/admin' ? 'active' :'' %>">
+        <li class="-nav-item <%= path==='/signup/admin' ? 'active' :'' %>">
             <a class="nav-link " href="/signup/admin">Admin Sign up</a>
+        </li>
+        <li class="admin-nav-item <%= path==='/signup' ? 'active' :'' %>">
+            <a class="nav-link" href="/signup">Sign up</a>
         </li>
 
         <li class="nav-item dropdown <%= path==='/login' ? 'active' :'' %>">

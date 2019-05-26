@@ -30,8 +30,7 @@ exports.postSignup = (req, res) => {
 						name     : name,
 						email    : email,
 						password : hashedPassword,
-						profile : {}
-
+						profile  : {}
 					});
 
 					return user.save();
@@ -41,6 +40,12 @@ exports.postSignup = (req, res) => {
 						userId : result._id
 					});
 					return resume.save();
+				})
+				.then((result) => {
+					User.findById(result.userId).then((user) => {
+						user.resumeId = result._id;
+						return user.save();
+					});
 				})
 				.then((result) => {
 					console.log('Log: exports.postSignup -> result', result);

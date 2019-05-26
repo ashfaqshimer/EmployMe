@@ -17,5 +17,7 @@ exports.getHome = (req, res) => {
 }
 
 exports.postSearch = (req,res)=>{
-    console.log(req.body)
+    const userId = req.session.user._id;
+    
+    
 }
