@@ -13,8 +13,11 @@
                 <div class="form-group col">
                     <label for="job-sector">Preferred Job Sector</label>
                     <select class="form-control" name="sector" id="job-sector" >
-                        <option value="" <%= !data.preferredJobSector ? 'selected' :null %> disabled hidden>--Select one--</option>
-                        <option value="Accountancy" <%= data.preferredJobSector==="Accountancy" ? 'selected' :null %>>Accountancy, banking and finance.</option>
+                        <option value="" selected disabled hidden>--Select one--</option>
+                        <% jobSector.forEach(option=>{ %>
+                            <option value="<%=option.value%>" <%= data.preferredJobSector===option.value ? 'selected' :null %>><%=option.label%> </option>
+                        <% }); %>
+                        <!-- <option value="Accountancy" <%= data.preferredJobSector==="Accountancy" ? 'selected' :null %>>Accountancy, banking and finance.</option>
                         <option value="Business" <%= data.preferredJobSector==="Business" ? 'selected' :null %>>Business, consulting and management.</option>
                         <option value="Charity" <%= data.preferredJobSector==="Charity" ? 'selected' :null %>>Charity and voluntary work.</option>
                         <option value="Arts" <%= data.preferredJobSector==="Arts" ? 'selected' :null %>>Creative arts and design.</option>
@@ -22,19 +25,22 @@
                         <option value="Engineering" <%= data.preferredJobSector==="Engineering" ? 'selected' :null %>>Engineering and manufacturing.</option>
                         <option value="Environment" <%= data.preferredJobSector==="Environment" ? 'selected' :null %>>Environment and agriculture.</option>
                         <option value="Healthcare" <%= data.preferredJobSector==="Healthcare" ? 'selected' :null %>>Healthcare.</option>
-                        <option value="IT" <%= data.preferredJobSector==="IT" ? 'selected' :null %>>Information Technology.</option>
+                        <option value="IT" <%= data.preferredJobSector==="IT" ? 'selected' :null %>>Information Technology.</option> -->
                     </select>
                 </div>
                 <div class="form-group col">
                     <label for="education-level">Your highest completed education level</label>
                     <select class="form-control" name="education" id="education">
                         <option value="" selected disabled hidden>--Select one--</option>
-                        <option value="1">Junior School</option>
+                        <% educationLevel.forEach(option=>{ %>
+                            <option value="<%=option.value%>" <%= data.highestCompletedEducation===option.value ? 'selected' :null %>><%=option.label%> </option>
+                        <% }); %>
+                        <!-- <option value="1">Junior School</option>
                         <option value="2">High School</option>
                         <option value="3">Diploma</option>
                         <option value="4">Undergratuate Degree</option>
                         <option value="5">Masters</option>
-                        <option value="6">Ph.D</option>
+                        <option value="6">Ph.D</option> -->
                     </select>
                 </div>
             </div>
@@ -57,9 +63,12 @@
                 <label for="">A/Level Stream</label>
                 <select class="form-control input" name="alStream" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
-                    <option value="Science">Science</option>
+                    <% alStream.forEach(option=>{ %>
+                        <option value="<%=option.value%>" <%= data.alStream===option.value ? 'selected' :null %>><%=option.label%> </option>
+                    <% }); %>
+                    <!-- <option value="Science">Science</option>
                     <option value="Commerce">Commerce</option>
-                    <option value="Arts">Arts</option>
+                    <option value="Arts">Arts</option> -->
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
@@ -68,7 +77,10 @@
                 <label for="">Diploma</label>
                 <select class="form-control" name="diploma" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
-                    <option value="">Business Studies </option>
+                    <% diploma.forEach(option=>{ %>
+                        <option value="<%=option.value%>" <%= data.diploma===option.value ? 'selected' :null %>><%=option.label%> </option>
+                    <% }); %>
+                    <!-- <option value="">Business Studies </option>
                     <option value="">Management Studies </option>
                     <option value="">Technology Studies </option>
                     <option value="">Design Studies </option>
@@ -81,7 +93,7 @@
                     <option value="">Engineering Studies </option>
                     <option value="">Journalism and Mass Communication </option>
                     <option value="">Administration Studies </option>
-                    <option value="">Marketing Studies </option>
+                    <option value="">Marketing Studies </option> -->
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
@@ -90,7 +102,10 @@
                 <label for="">Bachelor's Degree</label>
                 <select  class="form-control" name="bachelors" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
-                    <option value="Business">Business</option>
+                    <% bachelors.forEach(option=>{ %>
+                        <option value="<%=option.value%>" <%= data.bachelors===option.value ? 'selected' :null %>><%=option.label%> </option>
+                    <% }); %>
+                    <!-- <option value="Business">Business</option>
                     <option value="Health">Health professions and related programs</option>
                     <option value="Social Sciences">Social sciences and history</option>
                     <option value="Psychology">Psychology</option>
@@ -100,7 +115,7 @@
                     <option value="Education">Education</option>
                     <option value="Communication">Communication, journalism, and related programs</option>
                     <option value="Homeland security">Homeland security, law enforcement, and firefighting</option>
-                    <option value="IT">Computer and information sciences</option>
+                    <option value="IT">Computer and information sciences</option> -->
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
@@ -109,7 +124,10 @@
                 <label for="">Masters</label>
                 <select class="form-control" name="masters" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
-                    <option value="Business">Business</option>
+                    <% masters.forEach(option=>{ %>
+                        <option value="<%=option.value%>" <%= data.masters===option.value ? 'selected' :null %>><%=option.label%> </option>
+                    <% }); %>
+                    <!-- <option value="Business">Business</option>
                     <option value="Health">Health professions and related programs</option>
                     <option value="Social Sciences">Social sciences and history</option>
                     <option value="Psychology">Psychology</option>
@@ -119,7 +137,7 @@
                     <option value="Education">Education</option>
                     <option value="Communication">Communication, journalism, and related programs</option>
                     <option value="Homeland security">Homeland security, law enforcement, and firefighting</option>
-                    <option value="IT">Computer and information sciences</option>
+                    <option value="IT">Computer and information sciences</option> -->
                     <optgroup>""</optgroup>
                     <option value="">None</option>
                 </select>
@@ -150,13 +168,16 @@
                 <label for="">Professional Qualifications</label>
                 <select class="form-control" name="professional" id="">
                     <option value="" selected disabled hidden>--Select one--</option>
-                    <option value="">Association of Chartered Certified Accountants (ACCA)</option>
+                    <% professional.forEach(option=>{ %>
+                        <option value="<%=option.value%>" <%= data.professionalQualification===option.value ? 'selected' :null %>><%=option.label%> </option>
+                    <% }); %>
+                    <!-- <option value="">Association of Chartered Certified Accountants (ACCA)</option>
                     <option value="">BCS - The Chartered Institute for IT</option>
                     <option value=""
                         >Chartered Institute of Personnel and Development (CIPD)</option
                     >
                     <option value="">Institution of Civil Engineers (ICE)</option>
-                    <option value="">Royal Institution of Chartered Surveyors (RICS).</option>
+                    <option value="">Royal Institution of Chartered Surveyors (RICS).</option> -->
 
                     <optgroup>""</optgroup>
                     <option value="">None</option>

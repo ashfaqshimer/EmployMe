@@ -1,8 +1,21 @@
-const generateLookup = () =>{
+    //===============Bachelors===========================
+	exports.bachelors = [
+		{ value: 'Business', label: 'Business' },
+		{ value: 'Health', label: 'Health professions and related programs' },
+		{ value: 'Social Sciences', label: 'Social sciences and history' },
+		{ value: 'Psychology', label: 'Psychology' },
+		{ value: 'Biology', label: 'Biological and biomedical sciences' },
+		{ value: 'Engineering', label: 'Engineering' },
+		{ value: 'Performing Arts', label: 'Visual and performing arts' },
+		{ value: 'Education', label: 'Education' },
+		{ value: 'Communication', label: 'Communication, journalism, and related programs' },
+		{ value: 'HomelandSecurity', label: 'Homeland security, law enforcement, and firefighting' },
+		{ value: 'IT', label: 'Computer and information sciences' }
+	];
 
+    //=====================PHD================================
 	
-	//============================BACHELORS==============================
-	let values = [
+	exports.phd = [
 		{ value: 'Business', label: 'Business' },
 		{ value: 'Health', label: 'Health professions and related programs' },
 		{ value: 'Social Sciences', label: 'Social sciences and history' },
@@ -15,30 +28,11 @@ const generateLookup = () =>{
 		{ value: 'HomelandSecurity', label: 'Homeland security, law enforcement, and firefighting' },
 		{ value: 'IT', label: 'Computer and information sciences' }
 	];
-	const bachelorsLookup = new Lookup({ type: 'bachelors', values: values });
-	bachelorsLookup.save();
-	
-	//=====================PHD================================
-	
-	values = [
-		{ value: 'Business', label: 'Business' },
-		{ value: 'Health', label: 'Health professions and related programs' },
-		{ value: 'Social Sciences', label: 'Social sciences and history' },
-		{ value: 'Psychology', label: 'Psychology' },
-		{ value: 'Biology', label: 'Biological and biomedical sciences' },
-		{ value: 'Engineering', label: 'Engineering' },
-		{ value: 'Performing Arts', label: 'Visual and performing arts' },
-		{ value: 'Education', label: 'Education' },
-		{ value: 'Communication', label: 'Communication, journalism, and related programs' },
-		{ value: 'HomelandSecurity', label: 'Homeland security, law enforcement, and firefighting' },
-		{ value: 'IT', label: 'Computer and information sciences' }
-	];
-	const phdLookup = new Lookup({ type: 'phd', values: values });
-	phdLookup.save();
+
 	
 	//=========================MASTERS===================================
 	
-	values = [
+	exports.masters = [
 		{ value: 'Business', label: 'Business' },
 		{ value: 'Health', label: 'Health professions and related programs' },
 		{ value: 'Social Sciences', label: 'Social sciences and history' },
@@ -51,11 +45,10 @@ const generateLookup = () =>{
 		{ value: 'HomelandSecurity', label: 'Homeland security, law enforcement, and firefighting' },
 		{ value: 'IT', label: 'Computer and information sciences' }
 	];
-	const mastersLookup = new Lookup({ type: 'masters', values: values });
-	mastersLookup.save();
+
 	
 	//=============================JOB SECTOR====================
-	values = [
+	exports.jobSector = [
 		{ value: 'Accountancy', label: 'Accountancy' },
 		{ value: 'Business', label: 'Business' },
 		{ value: 'Charity', label: 'Charity' },
@@ -66,12 +59,11 @@ const generateLookup = () =>{
 		{ value: 'Healthcare', label: 'Healthcare' },
 		{ value: 'IT', label: 'Information Technology.' },
 	];
-	const jobSectorLookup = new Lookup({ type: 'jobSector', values: values });
-	jobSectorLookup.save();
+
 	
 	//==========================EDUCATION LEVEL====================
 	
-	values = [
+	exports.educationLevel = [
 		{ value: '1', label: 'Junior School' },
 		{ value: '2', label: 'High School' },
 		{ value: '3', label: 'Diploma' },
@@ -79,22 +71,20 @@ const generateLookup = () =>{
 		{ value: '5', label: 'Masters' },
 		{ value: '6', label: 'Ph.D' },
 	];
-	const ecuationLookup = new Lookup({ type: 'educationLevel', values: values });
-	ecuationLookup.save();
+
 	
 	//=========================ALSTREAM==========================
-	values = [
+	exports.alStream = [
 		{ value: 'Science', label: 'Science' },
 		{ value: 'Commerce', label: 'Commerce' },
 		{ value: 'Arts', label: 'Arts' },
 	];
-	const alStreamLookup = new Lookup({ type: 'alStream', values: values });
-	alStreamLookup.save();
+
 	
 	
 	//===============================DIPLOMA======================
 	
-	values = [
+	exports.diploma = [
 		{ value: 'Business', label: 'Business Studies' },
 		{ value: 'Management', label: 'Management Studies' },
 		{ value: 'Tech', label: 'Technology Studies' },
@@ -110,12 +100,11 @@ const generateLookup = () =>{
 		{ value: 'Administration', label: 'Administration Studies' },
 		{ value: 'Marketing', label: 'Marketing Studies' },
 	];
-	const diplomaLookup = new Lookup({ type: 'diploma', values: values });
-	diplomaLookup.save();
+
 	
 	//=======================PROFESSIONAL QUALIFICATIONS===================
 	
-	values = [
+	exports.professional = [
 		{ value: 'ACCA', label: 'Association of Chartered Certified Accountants (ACCA)' },
 		{ value: 'BCS', label: 'BCS - The Chartered Institute for IT' },
 		{ value: 'CIPD', label: 'Chartered Institute of Personnel and Development (CIPD)' },
@@ -123,9 +112,3 @@ const generateLookup = () =>{
 		{ value: 'RICS', label: 'Royal Institution of Chartered Surveyors (RICS).' },
 		
 	];
-	const professionalLookup = new Lookup({ type: 'professional', values: values });
-	professionalLookup.save();
-}
-	
-module.exports = generateLookup;	
-	
