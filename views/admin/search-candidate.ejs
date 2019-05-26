@@ -15,23 +15,17 @@
                                     <div class="col-lg-4 col-md-3 col-sm-12 p-0">
                                             <select class="form-control search-slt" name="sector" id="exampleFormControlSelect1">
                                                 <option value="" selected hidden disabled>Job Sector</option>
-                                                <option>Example one</option>
-                                                <option>Example one</option>
-                                                <option>Example one</option>
-                                                <option>Example one</option>
-                                                <option>Example one</option>
-                                                <option>Example one</option>
+                                                <% jobSector.forEach(option=>{ %>
+                                                    <option value="<%=option.value%>"><%=option.label%> </option>
+                                                <% }); %>
                                             </select>
                                         </div>
                                         <div class="col-lg-4 col-md-3 col-sm-12 p-0">
                                                 <select class="form-control search-slt" name="educationLevel" id="exampleFormControlSelect1">
                                                     <option value="" selected hidden disabled>Minimum Education Level</option>
-                                                    <option>Example one</option>
-                                                    <option>Example one</option>
-                                                    <option>Example one</option>
-                                                    <option>Example one</option>
-                                                    <option>Example one</option>
-                                                    <option>Example one</option>
+                                                    <% educationLevel.forEach(option=>{ %>
+                                                        <option value="<%=option.value%>"><%=option.label%> </option>
+                                                    <% }); %>
                                                 </select>
                                             </div>
                                 <div class="col-lg-2 col-md-3 col-sm-12 p-0">
@@ -45,23 +39,17 @@
                                 <div class="col-lg-4 col-md-3 col-sm-12 p-0">
                                     <select class="form-control search-slt" name="education" id="exampleFormControlSelect1">
                                         <option value="" selected hidden disabled>Specific Education Qualification</option>
-                                        <option>Example one</option>
-                                        <option>Example one</option>
-                                        <option>Example one</option>
-                                        <option>Example one</option>
-                                        <option>Example one</option>
-                                        <option>Example one</option>
+                                        <% educationLevel.forEach(option=>{ %>
+                                            <option value="<%=option.value%>"><%=option.label%> </option>
+                                        <% }); %>
                                     </select>
                                 </div>
                                 <div class="col-lg-4 col-md-3 col-sm-12 p-0">
                                     <select class="form-control search-slt" name="professional" id="exampleFormControlSelect1">
                                         <option value="" selected hidden disabled>Specific Professional Qualification</option>
-                                        <option>Example one</option>
-                                        <option>Example one</option>
-                                        <option>Example one</option>
-                                        <option>Example one</option>
-                                        <option>Example one</option>
-                                        <option>Example one</option>
+                                        <% professional.forEach(option=>{ %>
+                                            <option value="<%=option.value%>"><%=option.label%> </option>
+                                        <% }); %>
                                     </select>
                                 </div>
                                 <div class="col-lg-2 col-md-3 col-sm-12 p-0">
