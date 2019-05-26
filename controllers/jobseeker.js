@@ -1,5 +1,3 @@
-const bcrypt = require('bcryptjs');
-
 const User = require('../models/user');
 const Resume = require('../models/resume');
 const Lookup = require('../models/lookup');
@@ -158,12 +156,17 @@ exports.getResumeGenerateCV = (req, res) => {
 
 exports.getManageProfile = (req, res) => {
 	const userId = req.session.user._id;
-	let alStreamOptions = [];
+	let alStream = [];
 	let bachelors = [];
 	let masters = [];
 	let phd = [];
+	let jobSector = [];
+	let educationLevel = [];
+	let diploma = [];
+	let professional = [];
+
 	Lookup.findOne({ type: 'alStream' }).then((result) => {
-		alStreamOptions = [ ...result.values ];
+		alStream = [ ...result.values ];
 	});
 	Lookup.findOne({ type: 'bachelors' }).then((result) => {
 		bachelors = [ ...result.values ];
@@ -174,15 +177,33 @@ exports.getManageProfile = (req, res) => {
 	Lookup.findOne({ type: 'phd' }).then((result) => {
 		phd = [ ...result.values ];
 	});
+	Lookup.findOne({ type: 'jobSector' }).then((result) => {
+		jobSector = [ ...result.values ];
+	});
+	Lookup.findOne({ type: 'educationLevel' }).then((result) => {
+		educationLevel = [ ...result.values ];
+	});
+	Lookup.findOne({ type: 'diploma' }).then((result) => {
+		diploma = [ ...result.values ];
+	});
+	Lookup.findOne({ type: 'professional' }).then((result) => {
+		professional = [ ...result.values ];
+	});
 
 	User.findById(userId)
 		.then((user) => {
 			res.render('jobseeker/manage-profile', {
-				pageTitle : 'Manage Profile',
-				path      : '/manage-profile',
-				data      : user.profile,
-				alStream  : alStreamOptions,
-				phd       : phd
+				pageTitle    : 'Manage Profile',
+				path         : '/manage-profile',
+				data         : user.profile,
+				alStream     : alStream,
+				phd          : phd,
+				professional : professional,
+				diploma      : diploma,
+				masters      : masters,
+				bachelors    : bachelors,
+				jobSector    : jobSector,
+				phd          : phd
 			});
 		})
 		.catch((err) => {

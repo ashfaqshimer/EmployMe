@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
+const generateLookup = require(__dirname + '/lookupValues.js');
+
 //import routes
 const landingRoutes = require('./routes/landing');
 const jobseekerRoutes = require('./routes/jobseeker');
@@ -27,7 +29,11 @@ mongoose.connect(MONGODB_URI, {
 	useCreateIndex  : true
 });
 
-
+Lookup.countDocuments((err, count) => {
+	if (count === 0) {
+		generateLookup();
+	}
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));

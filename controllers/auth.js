@@ -29,7 +29,9 @@ exports.postSignup = (req, res) => {
 					const user = new User({
 						name     : name,
 						email    : email,
-						password : hashedPassword
+						password : hashedPassword,
+						profile : {}
+
 					});
 
 					return user.save();
@@ -83,33 +85,6 @@ exports.postAdminSignup = (req, res) => {
 			console.log(err);
 		});
 };
-
-// 	Admin.findOne({ email: email }, (err, foundAdmin) => {
-// 		if (!err) {
-// 			if (foundAdmin) {
-// 				//display error saying admin exists
-// 				console.log(foundAdmin);
-// 				res.redirect('/signup/admin');
-// 			} else {
-// 				//hash the password
-// 				bcrypt
-// 					.hash(password, 12)
-// 					.then((hashedPassword) => {
-// 						//save the admin and redirect
-// 						const admin = new Admin({
-// 							username : username,
-// 							email    : email,
-// 							password : hashedPassword
-// 						});
-// 						admin.save().then((response) => {
-// 							res.redirect('/login/admin');
-// 						});
-// 					})
-// 					.catch((err) => {});
-// 			}
-// 		}
-// 	});
-// };
 
 exports.getJobseekerLogin = (req, res) => {
 	res.render('login-jobseeker', { pageTitle: 'Job-Seeker Login', path: '/login' });
