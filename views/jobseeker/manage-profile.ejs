@@ -24,7 +24,7 @@
                     <select class="form-control" name="education" id="education">
                         <option value="" selected disabled hidden>--Select one--</option>
                         <% educationLevel.forEach(option=>{ %>
-                            <option value="<%=option.value%>" <%= data.highestCompletedEducation===option.value ? 'selected' :null %>><%=option.label%> </option>
+                            <option value='<%=option.value%>' <%= data.highestCompletedEducation==option.value ? 'selected' :null %>><%=option.label%> </option>
                         <% }); %>
                     </select>
                 </div>

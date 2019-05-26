@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get('/', adminControllers.getHome);
 
-router.post('/search', adminControllers.postSearch)
+router.post('/searchsector', adminControllers.postSearchSector)
 
 module.exports = router;

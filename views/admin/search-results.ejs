@@ -1,0 +1,49 @@
+<%- include('../partials/head.ejs') %>
+<link rel="stylesheet" href="/css/admin/searchpage.css">
+<!-- <link rel="stylesheet" href="/css/footer.css"> -->
+</head>
+<body>
+    <%- include('../partials/admin/admin-navbar.ejs') %>
+<section class="container">
+
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Preferred Job Sector</th>
+                    <th scope="col">OL Passes</th>
+                    <th scope="col">AL Passes</th>
+                    <th scope="col">Diploma</th>
+                    <th scope="col">Bachelor's</th>
+                    <th scope="col">Masters</th>
+                    <th scope="col">PHD</th>
+                    <th scope="col">Professional Qualification</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <% results.forEach(result=>{ %>
+                    <tr>
+                      <th scope="row"><%=result.name%></th>
+                      <td><%=result.email%></td>
+                      <td><%=result.profile.preferredJobSector%></td>
+                      <td><%=result.profile.olPasses%></td>
+                      <td><%=result.profile.alPasses%></td>
+                      <td><%=result.profile.diploma%></td>
+                      <td><%=result.profile.bachelors%></td>
+                      <td><%=result.profile.masters%></td>
+                      <td><%=result.profile.phd%></td>
+                      <td><%=result.profile.professionalQualification%></td>
+                    </tr>
+                  <%}) %>
+                  <tr>
+                </tbody>
+              </table>
+
+</section>
+
+
+
+
+</body>
+</html>

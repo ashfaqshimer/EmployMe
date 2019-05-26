@@ -8,13 +8,31 @@
 
         <section class="search-sec">
             <div class="container">
-                <form action="/admin/search" method="post" novalidate="novalidate">
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                <form action="/admin/searchsector" method="post">
+                                    <select class="form-control search-slt" name="sector" id="exampleFormControlSelect1">
+                                        <option selected hidden disabled>Job Sector</option>
+                                        <% jobSector.forEach(option=>{ %>
+                                            <option value="<%=option.value%>"><%=option.label%> </option>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <button type="submit" class="btn btn-danger wrn-btn">Search</button>
+                                </div>
+                            </form>
+                    </div>
+
+
+                <!-- <form action="/admin/search" method="post" novalidate="novalidate">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row">
                                     <div class="col-lg-4 col-md-3 col-sm-12 p-0">
                                             <select class="form-control search-slt" name="sector" id="exampleFormControlSelect1">
-                                                <option value="" selected hidden disabled>Job Sector</option>
+                                                <option selected hidden disabled>Job Sector</option>
                                                 <% jobSector.forEach(option=>{ %>
                                                     <option value="<%=option.value%>"><%=option.label%> </option>
                                                 <% }); %>
@@ -22,7 +40,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-3 col-sm-12 p-0">
                                                 <select class="form-control search-slt" name="educationLevel" id="exampleFormControlSelect1">
-                                                    <option value="" selected hidden disabled>Minimum Education Level</option>
+                                                    <option selected hidden disabled>Minimum Education Level</option>
                                                     <% educationLevel.forEach(option=>{ %>
                                                         <option value="<%=option.value%>"><%=option.label%> </option>
                                                     <% }); %>
@@ -38,7 +56,7 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-3 col-sm-12 p-0">
                                     <select class="form-control search-slt" name="education" id="exampleFormControlSelect1">
-                                        <option value="" selected hidden disabled>Specific Education Qualification</option>
+                                        <option selected hidden disabled>Specific Education Qualification</option>
                                         <% educationLevel.forEach(option=>{ %>
                                             <option value="<%=option.value%>"><%=option.label%> </option>
                                         <% }); %>
@@ -65,14 +83,10 @@
                                     <button type="submit" class="btn btn-danger wrn-btn">Search</button>
                                 </div>
                     </div>
-                </form>
+                </form> -->
             </div>
         </section>
-        <hr>
-        <section id="search-results">
-            <h1> Search results will be displayed here</h1>
-            
-        </section>
+
     </div>
         
 

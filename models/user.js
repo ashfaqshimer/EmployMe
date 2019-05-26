@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const userProfileSchema = new Schema({
 	preferredJobSector        : { type: String },
-	highestCompletedEducation : { type: String },
+	highestCompletedEducation : { type: Number },
 	olPasses                  : { type: Number, default: 0 },
 	alPasses                  : { type: Number, default: 0 },
 	alStream                  : { type: String, default: 'None' },
