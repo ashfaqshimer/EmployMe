@@ -3,6 +3,10 @@ const Resume = require('../models/resume');
 
 const getValues = require('../getValues');
 
+exports.getHome = (req, res) => {
+	res.render('jobseeker/homepage', { pageTitle: 'Job-Seeker', path: 'jobseeker/' });
+}
+
 exports.getResume = (req, res) => {
 	res.render('jobseeker/resume/instructions', {
 		pageTitle : 'Resume',

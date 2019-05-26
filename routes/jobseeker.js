@@ -4,9 +4,7 @@ const router = express.Router();
 const jobseekerControllers = require('../controllers/jobseeker');
 const isAuth = require('../middleware/isAuthUser');
 
-router.get('/', (req, res) => {
-	res.render('jobseeker/homepage', { pageTitle: 'Job-Seeker', path: 'jobseeker/' });
-});
+router.get('/', isAuth, jobseekerControllers.getHome);
 
 //jobseeker resume routes
 router.route('/resume').get(isAuth, jobseekerControllers.getResume);
