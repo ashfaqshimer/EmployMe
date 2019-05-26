@@ -69,7 +69,7 @@ exports.postAdminSignup = (req, res) => {
 	Admin.findOne({ email: email })
 		.then((userDoc) => {
 			if (userDoc) {
-				return res.redirect('/signup');
+				return res.redirect('/signup/admin');
 			}
 			return bcrypt
 				.hash(password, 12)
