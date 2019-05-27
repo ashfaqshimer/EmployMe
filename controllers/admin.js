@@ -1,9 +1,8 @@
 const User = require('../models/user');
 const Resume = require('../models/resume');
-const Lookup = require('../models/lookup');
 
 const getValues = require('../getValues');
-
+s
 exports.getHome = (req, res) => {
 	res.render('admin/search-candidate', {
 		pageTitle      : 'Administrator',
