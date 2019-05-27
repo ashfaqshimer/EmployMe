@@ -12,6 +12,7 @@ const adminRoutes = require('./routes/admin');
 
 // Import models
 const User = require('./models/user');
+const Admin = require('./models/admin');
 
 // This is the link to the local and live databases. Uncomment where needed
 // const MONGODB_URI = 'mongodb://localhost:27017/employmeDB';
@@ -44,16 +45,32 @@ app.use(
 	})
 );
 
+// Create a session
+
 app.use((req, res, next) => {
 	if (!req.session.user) {
 		return next();
 	}
-	User.findById(req.session.user._id)
-		.then((user) => {
-			req.user = user;
-			next();
-		})
-		.catch((err) => console.log(err));
+
+	if (req.session.userType === 'jobseeker') {
+		console.log('The jobseeker logged in!');
+		User.findById(req.session.user._id)
+			.then((user) => {
+				req.user = user;
+				return next();
+			})
+			.catch((err) => console.log(err));
+	}
+
+	if (req.session.userType === 'admin') {
+		console.log('The admin logged in!');
+		Admin.findById(req.session.user._id)
+			.then((admin) => {
+				req.user = admin;
+				return next();
+			})
+			.catch((err) => console.log(err));
+	}
 });
 
 //----------------------------------ROUTES--------------------------

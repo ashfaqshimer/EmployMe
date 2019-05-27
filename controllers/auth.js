@@ -110,6 +110,7 @@ exports.postJobseekerLogin = (req, res) => {
 					if (doMatch) {
 						req.session.isLoggedIn = true;
 						req.session.user = user;
+						req.session.userType = 'jobseeker';
 						return req.session.save((err) => {
 							console.log(err);
 							res.redirect('/jobseeker/');
@@ -143,7 +144,8 @@ exports.postAdminLogin = (req, res) => {
 				.then((doMatch) => {
 					if (doMatch) {
 						req.session.isLoggedIn = true;
-						req.session.admin = admin;
+						req.session.user = admin;
+						req.session.userType = 'admin';
 						return req.session.save((err) => {
 							console.log(err);
 							res.redirect('/admin/');
