@@ -1,0 +1,49 @@
+<%- include('../partials/head.ejs') %>
+<link rel="stylesheet" href="/css/admin/searchpage.css">
+</head>
+
+<body>
+	<%- include('../partials/admin/admin-navbar.ejs') %>
+	<section class="container">
+		<div class="row">
+			<form action="" class="col">
+				<div class="row">
+					<select
+						class="form-control search-slt col"
+						name="sector"
+						id="exampleFormControlSelect1"
+					>
+						<option selected hidden disabled>Job Sector</option>
+						<% jobSector.forEach(option=>{ %>
+						<option value="<%=option.value%>"><%=option.label%> </option>
+						<% }); %>
+					</select>
+					<!-- <div class="col"> -->
+					<button type="submit" class="btn btn-danger wrn-btn col">
+						Search
+					</button>
+					<!-- </div> -->
+				</div>
+			</form>
+			<form action="" class="col">
+				<div class="row">
+					<select
+						class="form-control search-slt col"
+						name="sector"
+						id="exampleFormControlSelect1"
+					>
+						<option selected hidden disabled>Job Sector</option>
+						<% jobSector.forEach(option=>{ %>
+						<option value="<%=option.value%>"><%=option.label%> </option>
+						<% }); %>
+					</select>
+					<!-- <div class="col"> -->
+					<button type="submit" class="btn btn-danger wrn-btn col">
+						Search
+					</button>
+					<!-- </div> -->
+				</div>
+			</form>
+		</div>
+	</section>
+</body>
