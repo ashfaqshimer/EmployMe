@@ -1,19 +1,23 @@
+// Import Node Modules
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
-//import routes
+// Import routes
 const landingRoutes = require('./routes/landing');
 const jobseekerRoutes = require('./routes/jobseeker');
 const adminRoutes = require('./routes/admin');
 
-//import models
+// Import models
 const User = require('./models/user');
 
+// This is the link to the local and live databases. Uncomment where needed
 // const MONGODB_URI = 'mongodb://localhost:27017/employmeDB';
 const MONGODB_URI = 'mongodb+srv://admin-ashfaq:admin123@cluster0-nkvw7.mongodb.net/employmeDB';
+
+//=====================Main code starts here===========================================
 
 const app = express();
 const store = new MongoDBStore({
@@ -21,7 +25,7 @@ const store = new MongoDBStore({
 	collection : 'sessions'
 });
 
-//Connecting the database
+// Connecting the database
 mongoose.connect(MONGODB_URI, {
 	useNewUrlParser : true,
 	useCreateIndex  : true
@@ -51,9 +55,6 @@ app.use((req, res, next) => {
 		})
 		.catch((err) => console.log(err));
 });
-
-//Main code starts here
-const sequelize = require('./util/database'); //importing the database
 
 //----------------------------------ROUTES--------------------------
 
