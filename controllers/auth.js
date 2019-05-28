@@ -19,40 +19,40 @@ exports.postSignup = (req, res) => {
 	const password = req.body.password;
 
 	User.findOne({ email: email })
-		.then((userDoc) => {
+		.then(userDoc => {
 			if (userDoc) {
 				return res.redirect('/signup');
 			}
 			return bcrypt
 				.hash(password, 12)
-				.then((hashedPassword) => {
+				.then(hashedPassword => {
 					const user = new User({
-						name     : name,
-						email    : email,
-						password : hashedPassword,
-						profile  : {}
+						name: name,
+						email: email,
+						password: hashedPassword,
+						profile: {},
+						skills: []
 					});
 
 					return user.save();
 				})
-				.then((result) => {
+				.then(result => {
 					const resume = new Resume({
-						userId : result._id
+						userId: result._id
 					});
 					return resume.save();
 				})
-				.then((result) => {
-					User.findById(result.userId).then((user) => {
+				.then(result => {
+					User.findById(result.userId).then(user => {
 						user.resumeId = result._id;
 						return user.save();
 					});
 				})
-				.then((result) => {
-					console.log('Log: exports.postSignup -> result', result);
+				.then(result => {
 					res.redirect('/login/jobseeker');
 				});
 		})
-		.catch((err) => {
+		.catch(err => {
 			console.log(err);
 		});
 };
@@ -67,26 +67,26 @@ exports.postAdminSignup = (req, res) => {
 	const password = req.body.password;
 
 	Admin.findOne({ email: email })
-		.then((userDoc) => {
+		.then(userDoc => {
 			if (userDoc) {
 				return res.redirect('/signup/admin');
 			}
 			return bcrypt
 				.hash(password, 12)
-				.then((hashedPassword) => {
+				.then(hashedPassword => {
 					const admin = new Admin({
-						username : username,
-						email    : email,
-						password : hashedPassword
+						username: username,
+						email: email,
+						password: hashedPassword
 					});
 
 					return admin.save();
 				})
-				.then((result) => {
+				.then(result => {
 					res.redirect('/login/admin');
 				});
 		})
-		.catch((err) => {
+		.catch(err => {
 			console.log(err);
 		});
 };
@@ -99,31 +99,31 @@ exports.postJobseekerLogin = (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 	User.findOne({ email: email })
-		.then((user) => {
+		.then(user => {
 			if (!user) {
 				console.log('No user found!');
 				return res.redirect('/login/jobseeker');
 			}
 			bcrypt
 				.compare(password, user.password)
-				.then((doMatch) => {
+				.then(doMatch => {
 					if (doMatch) {
 						req.session.isLoggedIn = true;
 						req.session.user = user;
 						req.session.userType = 'jobseeker';
-						return req.session.save((err) => {
+						return req.session.save(err => {
 							console.log(err);
 							res.redirect('/jobseeker/');
 						});
 					}
 					res.redirect('/login/jobseeker');
 				})
-				.catch((err) => {
+				.catch(err => {
 					console.log(err);
 					res.redirect('/login/jobseeker');
 				});
 		})
-		.catch((err) => console.log(err));
+		.catch(err => console.log(err));
 };
 
 exports.getAdminLogin = (req, res) => {
@@ -134,35 +134,35 @@ exports.postAdminLogin = (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
 	Admin.findOne({ username: username })
-		.then((admin) => {
+		.then(admin => {
 			if (!admin) {
 				console.log('No admin found!');
 				return res.redirect('/login/jobseeker');
 			}
 			bcrypt
 				.compare(password, admin.password)
-				.then((doMatch) => {
+				.then(doMatch => {
 					if (doMatch) {
 						req.session.isLoggedIn = true;
 						req.session.user = admin;
 						req.session.userType = 'admin';
-						return req.session.save((err) => {
+						return req.session.save(err => {
 							console.log(err);
 							res.redirect('/admin/');
 						});
 					}
 					res.redirect('/login/admin');
 				})
-				.catch((err) => {
+				.catch(err => {
 					console.log(err);
 					res.redirect('/login/admin');
 				});
 		})
-		.catch((err) => console.log(err));
+		.catch(err => console.log(err));
 };
 
 exports.postLogout = (req, res, next) => {
-	req.session.destroy((err) => {
+	req.session.destroy(err => {
 		console.log(err);
 		res.redirect('/');
 	});

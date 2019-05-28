@@ -12,7 +12,6 @@ const resumeSchema = new Schema({
 			jobCategory : { type: String, trim: true },
 			startDate   : { type: Date },
 			endDate     : { type: Date, default: Date.now },
-			duration    : { type: Number },
 			description : { type: String, trim: true }
 		}
 	],
@@ -25,8 +24,6 @@ const resumeSchema = new Schema({
 			description : { type: String, trim: true }
 		}
 	],
-
-	skills         : [ { skill: { type: String, trim: true, lowercase: true } } ],
 
 	personalInfo   : {
 		fullName        : { type: String, trim: true },

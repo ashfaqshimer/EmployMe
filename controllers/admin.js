@@ -38,3 +38,15 @@ exports.postSearchSector = (req, res) => {
 			});
 		});
 };
+
+exports.postSearch = (req, res) => {
+	const jobSector = req.body.jobSector;
+
+	User.find({ "profile.preferredJobSector": jobSector }).then(results => {
+		res.render("admin/search-results", {
+			pageTitle: "Administrator",
+			path: "/admin/",
+			results: results
+		});
+	});
+};

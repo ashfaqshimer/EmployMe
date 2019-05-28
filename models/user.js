@@ -4,38 +4,40 @@ const validator = require('validator');
 const Schema = mongoose.Schema;
 
 const userProfileSchema = new Schema({
-	preferredJobSector        : { type: String },
-	highestCompletedEducation : { type: Number },
-	olPasses                  : { type: Number, default: 0 },
-	alPasses                  : { type: Number, default: 0 },
-	alStream                  : { type: String, default: 'None' },
-	diploma                   : { type: String, default: 'None' },
-	bachelors                 : { type: String, default: 'None' },
-	masters                   : { type: String, default: 'None' },
-	phd                       : { type: String, default: 'None' },
-	professionalQualification : { type: String, default: 'None' }
+	preferredJobSector: { type: String },
+	highestCompletedEducation: { type: Number },
+	olPasses: { type: Number, default: 0 },
+	alPasses: { type: Number, default: 0 },
+	alStream: { type: String, default: 'None' },
+	diploma: { type: String, default: 'None' },
+	bachelors: { type: String, default: 'None' },
+	masters: { type: String, default: 'None' },
+	phd: { type: String, default: 'None' },
+	professionalQualification: { type: String, default: 'None' },
+	skills: [{ skill: { type: String, trim: true, lowercase: true } }],
+	workExperience: { type: Number, default: 0 }
 });
 
 const userSchema = new Schema({
-	name     : { type: String, required: true, trim: true },
-	email    : {
-		type      : String,
-		required  : true,
-		unique    : true,
+	name: { type: String, required: true, trim: true },
+	email: {
+		type: String,
+		required: true,
+		unique: true,
 		validate(value) {
 			if (!validator.isEmail(value)) {
 				throw new Error('Email is invalid');
 			}
 		},
-		trim      : true,
-		lowercase : true
+		trim: true,
+		lowercase: true
 	},
-	password : { type: String, required: true, minlength: 6 },
-	resumeId : {
-		type : Schema.Types.ObjectId,
-		ref  : 'Resume'
+	password: { type: String, required: true, minlength: 6 },
+	resumeId: {
+		type: Schema.Types.ObjectId,
+		ref: 'Resume'
 	},
-	profile  : userProfileSchema
+	profile: userProfileSchema
 });
 
 module.exports = mongoose.model('User', userSchema);

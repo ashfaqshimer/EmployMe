@@ -3,44 +3,49 @@
 </head>
 
 <body>
-    <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %> <%-
-    include('../../partials/jobseeker/resume-sidebar.ejs') %>
+    <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %> 
+    
+    <%- include('../../partials/jobseeker/resume-sidebar.ejs') %>
 
-    <main class="container overflow-auto ">
-        <div class="row">
-            <div class="col border border-dark rounded">
-                <form class="skill-submit" action="/jobseeker/resume/skills" method="POST">
-                    <div class="form-group">
-                        <label for="skill">Skill</label>
-                        <input class="form-control" name="skill" type="text" id="skill" />
-                    </div>
-                    <button type="submit" class="btn btn-dark">Add Skill</button>
-                    <ul class="mt-4">
-                        <li>Try to keep your skills as meaningful. </li>
-                        <li>Add the most appropriate skills only and avoid having multiple words</li>
-                    </ul>
-                </form>
-            </div>
-            <div class="col border border-dark rounded ml-2 text-center ">
-                <h1>Your skills</h1>
-                <p>Your selected skills are displayed here.</p>
-                <div class="list-type2">                    
-                    <ul>
-                       <% data.forEach(skill => { %>
-                        <li class="list-group-item" name="skill"><%= skill.skill %></li>
-                        <form class="skill-delete-btn" action="/jobseeker/resume/skills/delete" method="post">
-                            <input type="hidden" name="skillId" value="<%=skill._id%>">
-                                <button type="submit" class="btn btn-danger btn-sm">Delete Skill</button>
-                         </form>
-                        <% }) %>
-                    </ul>
-                </div>
-                <p>You can add up-to 10 skills</p>
-                <p>
-                    <em> You may remove an existing skill by clicking on the button.</em>
-                </p>
-                <hr>
-            </div>
-        </div>
-    </main>
+	<main class="container overflow-auto ">
+		<div class="row">
+			<div class="col border border-dark rounded">
+				<form class="skill-submit" action="/jobseeker/resume/skills" method="POST">
+					<div class="form-group">
+						<label for="skill">Skill</label>
+						<input class="form-control" name="skill" type="text" id="skill" />
+					</div>
+					<button type="submit" class="btn btn-dark">Add Skill</button>
+					<ul class="mt-4">
+						<li>Try to keep your skills as meaningful.</li>
+						<li>
+							Add the most appropriate skills only and avoid having multiple words
+						</li>
+					</ul>
+				</form>
+			</div>
+			<div class="col border border-dark rounded ml-2 text-center ">
+				<h1>Your skills</h1>
+				<p>Your selected skills are displayed here.</p>
+				<div class="list-type2">
+					<ul>
+						<% data.forEach(skill => { %>
+						<li class="list-group-item" name="skill"><%= skill.skill %></li>
+						<form class="skill-delete-btn" action="/jobseeker/resume/skills/delete" method="post">
+							<input type="hidden" name="skillId" value="<%=skill._id%>" />
+							<button type="submit" class="btn btn-danger btn-sm">
+								Delete Skill
+							</button>
+						</form>
+						<% }) %>
+					</ul>
+				</div>
+				<p>You can add up-to 10 skills</p>
+				<p>
+					<em> You may remove an existing skill by clicking on the button.</em>
+				</p>
+				<hr />
+			</div>
+		</div>
+	</main>
 </body>
