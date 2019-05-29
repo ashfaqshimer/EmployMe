@@ -48,6 +48,9 @@ exports.postSearch = (req, res) => {
 	const professional = req.body.professional ? req.body.professional : { $exists: true };
 	const skill = req.body.skill ? req.body.skill : { $exists: true };
 	const experience = req.body.experience ? req.body.experience : 0;
+	const olPasses = req.body.olPasses ? req.body.olPasses : 0;
+	const alPasses = req.body.alPasses ? req.body.alPasses : 0;
+	const educationLevel = req.body.educationLevel ? req.body.educationLevel : 0;
 
 	User.find({
 		'profile.preferredJobSector': jobSector,
@@ -57,7 +60,10 @@ exports.postSearch = (req, res) => {
 		'profile.phd': phd,
 		'profile.professionalQualification': professional,
 		'skills.skill': skill,
-		'profile.workExperience': { $gte: experience }
+		'profile.workExperience': { $gte: experience },
+		'profile.olPasses': { $gte: olPasses },
+		'profile.alPasses': { $gte: alPasses },
+		'profile.highestCompletedEducation': { $gte: educationLevel }
 	})
 		.then(results => {
 			res.render('admin/search-results', {

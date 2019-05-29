@@ -85,9 +85,17 @@
 					<option value="<%=option.value%>"><%=option.label%> </option>
 					<% }); %>
 				</select>
+			<select name="educationLevel">
+					<option value="" selected hidden disabled>educationLevel</option>
+					<% educationLevel.forEach(option=>{ %>
+					<option value="<%=option.value%>"><%=option.label%> </option>
+					<% }); %>
+				</select>
 				
 				<input type="text" name="skill" placeholder="skill" id="">
 				<input type="number" name="experience" placeholder="experience" id="">
+				<input type="number" name="olPasses" placeholder="olPasses" id="">
+				<input type="number" name="alPasses" placeholder="alPasses" id="">
 			
 
 		<button type="submit">Search</button>
