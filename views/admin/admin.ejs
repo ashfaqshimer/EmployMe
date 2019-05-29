@@ -4,103 +4,141 @@
 
 <body>
 	<%- include('../partials/admin/admin-navbar.ejs') %>
-	<section class="container">
+	<!-- <section class="container">
 		<div class="row">
 			<form action="" class="col">
 				<div class="row">
-					<select
-						class="form-control search-slt col"
-						name="sector"
-						id="exampleFormControlSelect1"
-					>
+					<select class="form-control search-slt col" name="sector" id="exampleFormControlSelect1">
 						<option selected hidden disabled>Job Sector</option>
 						<% jobSector.forEach(option=>{ %>
 						<option value="<%=option.value%>"><%=option.label%> </option>
 						<% }); %>
 					</select>
-					<!-- <div class="col"> -->
+	
 					<button type="submit" class="btn btn-danger wrn-btn col">
 						Search
 					</button>
-					<!-- </div> -->
+		
 				</div>
 			</form>
 			<form action="" class="col">
 				<div class="row">
-					<select
-						class="form-control search-slt col"
-						name="sector"
-						id="exampleFormControlSelect1"
-					>
+					<select class="form-control search-slt col" name="sector" id="exampleFormControlSelect1">
 						<option selected hidden disabled>Job Sector</option>
 						<% jobSector.forEach(option=>{ %>
 						<option value="<%=option.value%>"><%=option.label%> </option>
 						<% }); %>
 					</select>
-					<!-- <div class="col"> -->
+				
 					<button type="submit" class="btn btn-danger wrn-btn col">
 						Search
 					</button>
-					<!-- </div> -->
+					
 				</div>
 			</form>
 		</div>
-	</section>
+	</section> -->
 
 	<section id="test">
 		<form action="/admin/search" method="post">
-			<select name="jobSector">
-					<option value="" selected hidden disabled>Job Sector</option>
-					<% jobSector.forEach(option=>{ %>
-					<option value="<%=option.value%>"><%=option.label%> </option>
-					<% }); %>
-			</select>
-			<select name="diploma">
-				<option value="" selected hidden disabled>Diploma</option>
-				<% diploma.forEach(option=>{ %>
-				<option value="<%=option.value%>"><%=option.label%> </option>
-				<% }); %>
-			</select>
-			<select name="bachelors">
-				<option value="" selected hidden disabled>bachelors</option>
-				<% bachelors.forEach(option=>{ %>
-				<option value="<%=option.value%>"><%=option.label%> </option>
-				<% }); %>
-			</select>
-			<select name="masters">
-					<option value="" selected hidden disabled>masters</option>
-					<% masters.forEach(option=>{ %>
-					<option value="<%=option.value%>"><%=option.label%> </option>
-					<% }); %>
-			</select>
-			<select name="phd">
-					<option value="" selected hidden disabled>phd</option>
-					<% phd.forEach(option=>{ %>
-					<option value="<%=option.value%>"><%=option.label%> </option>
-					<% }); %>
-				</select>
-			<select name="professional">
-					<option value="" selected hidden disabled>professional</option>
-					<% professional.forEach(option=>{ %>
-					<option value="<%=option.value%>"><%=option.label%> </option>
-					<% }); %>
-				</select>
-			<select name="educationLevel">
-					<option value="" selected hidden disabled>educationLevel</option>
-					<% educationLevel.forEach(option=>{ %>
-					<option value="<%=option.value%>"><%=option.label%> </option>
-					<% }); %>
-				</select>
-				
-				<input type="text" name="skill" placeholder="skill" id="">
-				<input type="number" name="experience" placeholder="experience" id="">
-				<input type="number" name="olPasses" placeholder="olPasses" id="">
-				<input type="number" name="alPasses" placeholder="alPasses" id="">
+			<div class="jumbotron ">
+
+				<h1 class="display-4">Search for candidates</h1>
+				<p class="lead"> Work</p>
+				<div class="row m-3">
+						<select class="form-control search-slt col" name="jobSector">
+							<option value="" selected hidden disabled>Job Sector</option>
+							<% jobSector.forEach(option=>{ %>
+							<option value="<%=option.value%>"><%=option.label%> </option>
+							<% }); %>
+						</select>
+						<input
+							class="form-control search-slt col"
+							type="number"
+							name="experience"
+							placeholder="Work Experience"
+							id=""
+						/>
+		
+						<input
+							class="form-control search-slt col"
+							type="text"
+							name="skill"
+							placeholder="Specific Skill"
+							id=""
+						/>
+					</div>
+
+					<hr class="my-4">
+					<p class="lead" >Qualifications</p>
+
+					<div class="row m-3">
+						<select class="form-control search-slt col" name="diploma">
+							<option value="" selected hidden disabled>Diploma</option>
+							<% diploma.forEach(option=>{ %>
+							<option value="<%=option.value%>"><%=option.label%> </option>
+							<% }); %>
+						</select>
+						<select class="form-control search-slt col" name="bachelors">
+							<option value="" selected hidden disabled>Bachelors</option>
+							<% bachelors.forEach(option=>{ %>
+							<option value="<%=option.value%>"><%=option.label%> </option>
+							<% }); %>
+						</select>
+						<select class="form-control search-slt col" name="masters">
+							<option value="" selected hidden disabled>Masters</option>
+							<% masters.forEach(option=>{ %>
+							<option value="<%=option.value%>"><%=option.label%> </option>
+							<% }); %>
+						</select>
+						<select class="form-control search-slt col" name="phd">
+							<option value="" selected hidden disabled>PHD</option>
+							<% phd.forEach(option=>{ %>
+							<option value="<%=option.value%>"><%=option.label%> </option>
+							<% }); %>
+						</select>
+						<select class="form-control search-slt col" name="professional">
+							<option value="" selected hidden disabled>Professional Qualification</option>
+							<% professional.forEach(option=>{ %>
+							<option value="<%=option.value%>"><%=option.label%> </option>
+							<% }); %>
+						</select>
+					</div>
+					<hr class="my-4">
+					<p class="lead">Education</p>
+					<div class="row m-3">
+							<select class="form-control search-slt col" name="educationLevel">
+								<option value="" selected hidden disabled>Education Level</option>
+								<% educationLevel.forEach(option=>{ %>
+								<option value="<%=option.value%>"><%=option.label%> </option>
+								<% }); %>
+							</select>
 			
-
-		<button type="submit">Search</button>
+							<input
+								class="form-control search-slt col"
+								type="number"
+								name="olPasses"
+								placeholder="GCSE OL Passes"
+								id=""
+							/>
+							<input
+								class="form-control search-slt col"
+								type="number"
+								name="alPasses"
+								placeholder="GCSE AL Passes"
+								id=""
+							/>
+							<hr class="my-4">
+							
+			</div>
+			<div class="d-flex justify-content-center mt-5">
+					<button type="reset" class="btn btn-dark wrn-btn ">Reset Fields</button>
+					<button type="submit" class="btn btn-success wrn-btn ">
+						Search
+					</button>
+				</div>
+		
 		</form>
-
 	</section>
-
+	<%- include('../partials/footer.ejs') %>
 </body>
