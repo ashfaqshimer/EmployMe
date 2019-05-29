@@ -81,7 +81,7 @@ exports.alStream = [
 exports.diploma = [
 	{ value: 'Business', label: 'Business Studies' },
 	{ value: 'Management', label: 'Management Studies' },
-	{ value: 'Tech', label: 'Technology Studies' },
+	{ value: 'Technology Studies', label: 'Technology Studies' },
 	{ value: 'Design', label: 'Design Studies' },
 	{ value: 'Economics', label: 'Economic Studies' },
 	{ value: 'Tourism', label: 'Tourism and Hospitality ' },

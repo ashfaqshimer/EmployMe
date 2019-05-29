@@ -14,7 +14,6 @@ const userProfileSchema = new Schema({
 	masters: { type: String, default: 'None' },
 	phd: { type: String, default: 'None' },
 	professionalQualification: { type: String, default: 'None' },
-	skills: [{ skill: { type: String, trim: true, lowercase: true } }],
 	workExperience: { type: Number, default: 0 }
 });
 
@@ -37,7 +36,8 @@ const userSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Resume'
 	},
-	profile: userProfileSchema
+	profile: userProfileSchema,
+	skills: [{ skill: { type: String, trim: true, lowercase: true } }]
 });
 
 module.exports = mongoose.model('User', userSchema);

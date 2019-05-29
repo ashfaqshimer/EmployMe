@@ -68,7 +68,7 @@
                         <option value="<%=option.value%>" <%= data.alStream===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
                     <optgroup>""</optgroup>
-                    <option value="">None</option>
+                    <option value="None">None</option>
                 </select>
             </div>
             <div class="form-group">
@@ -79,7 +79,7 @@
                         <option value="<%=option.value%>" <%= data.diploma===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
                     <optgroup>""</optgroup>
-                    <option value="">None</option>
+                    <option value="None">None</option>
                 </select>
             </div>
             <div class="form-group">
@@ -90,7 +90,7 @@
                         <option value="<%=option.value%>" <%= data.bachelors===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
                     <optgroup>""</optgroup>
-                    <option value="">None</option>
+                    <option value="None">None</option>
                 </select>
             </div>
             <div class="form-group">
@@ -101,7 +101,7 @@
                         <option value="<%=option.value%>" <%= data.masters===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
                     <optgroup>""</optgroup>
-                    <option value="">None</option>
+                    <option value="None" <%= data.masters==="None" ? 'selected' :null %>>None</option>
                 </select>
             </div>
             <div class="form-group">
@@ -112,7 +112,7 @@
                         <option value="<%=option.value%>" <%= data.phd===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
                     <optgroup>""</optgroup>
-                    <option value="None">None</option>
+                    <option value="None" <%= data.phd==="None" ? 'selected' :null %>>None</option>
                 </select>
             </div>
             <div class="form-group">
@@ -123,7 +123,7 @@
                         <option value="<%=option.value%>" <%= data.professionalQualification===option.value ? 'selected' :null %>><%=option.label%> </option>
                     <% }); %>
                     <optgroup>""</optgroup>
-                    <option value="">None</option>
+                    <option value="None" <%= data.professionalQualification==="None" ? 'selected' :null %> >None </option>
                 </select>
             </div>
             <button class="btn btn-primary" >Submit Changes</button>

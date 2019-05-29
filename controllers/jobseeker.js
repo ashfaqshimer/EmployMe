@@ -96,7 +96,7 @@ exports.getResumeSkills = (req, res) => {
 				pageTitle: 'Resume-Skills',
 				path: '/resume',
 				tabpath: '/skills',
-				data: foundUser.profile.skills
+				data: foundUser.skills
 			});
 		})
 		.catch(err => {});
@@ -104,24 +104,20 @@ exports.getResumeSkills = (req, res) => {
 
 exports.postResumeSkills = (req, res) => {
 	const userId = req.session.user._id;
-	console.log('TCL: exports.postResumeSkills -> userId', userId);
 	const skill = req.body.skill;
-	console.log('TCL: exports.postResumeSkills -> skill', skill);
 
 	User.findById(userId)
 		.then(user => {
-			console.log('TCL: exports.postResumeSkills -> user', user);
-
-			if (user.profile.skills.length >= 10) {
+			if (user.skills.length >= 10) {
 				return console.log('Maximum reached!');
 			}
 			const newSkill = {
 				skill: skill
 			};
 
-			const updatedSkills = [...user.profile.skills];
+			const updatedSkills = [...user.skills];
 			updatedSkills.push(newSkill);
-			user.profile.skills = updatedSkills;
+			user.skills = updatedSkills;
 			return user.save();
 		})
 		.then(result => {
@@ -138,7 +134,7 @@ exports.postDeleteSkill = (req, res) => {
 
 	User.findOne(userId)
 		.then(user => {
-			user.profile.skills.pull(skillId);
+			user.skills.pull(skillId);
 			return user.save();
 		})
 		.then(result => {
@@ -203,7 +199,7 @@ exports.postManageProfile = (req, res) => {
 
 	User.findById(userId)
 		.then(user => {
-			const newProfile = {
+			let newProfile = {
 				preferredJobSector: sector,
 				highestCompletedEducation: highestCompletedEducation,
 				olPasses: olPasses,
