@@ -46,7 +46,8 @@ exports.postSearch = (req, res) => {
 	const phd = req.body.phd ? req.body.phd : { $exists: true };
 	const bachelors = req.body.bachelors ? req.body.bachelors : { $exists: true };
 	const professional = req.body.professional ? req.body.professional : { $exists: true };
-	const skill = req.body.skill;
+	const skill = req.body.skill ? req.body.skill : { $exists: true };
+	const experience = req.body.experience ? req.body.experience : 0;
 
 	User.find({
 		'profile.preferredJobSector': jobSector,
@@ -55,7 +56,8 @@ exports.postSearch = (req, res) => {
 		'profile.masters': masters,
 		'profile.phd': phd,
 		'profile.professionalQualification': professional,
-		'skills.skill': skill
+		'skills.skill': skill,
+		'profile.workExperience': { $gte: experience }
 	})
 		.then(results => {
 			res.render('admin/search-results', {
