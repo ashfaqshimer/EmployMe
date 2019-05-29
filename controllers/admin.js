@@ -45,18 +45,26 @@ exports.postSearch = (req, res) => {
 	const masters = req.body.masters ? req.body.masters : { $exists: true };
 	const phd = req.body.phd ? req.body.phd : { $exists: true };
 	const bachelors = req.body.bachelors ? req.body.bachelors : { $exists: true };
+	const professional = req.body.professional ? req.body.professional : { $exists: true };
+	const skill = req.body.skill;
 
 	User.find({
 		'profile.preferredJobSector': jobSector,
 		'profile.diploma': diploma,
 		'profile.bachelors': bachelors,
 		'profile.masters': masters,
-		'profile.phd': phd
-	}).then(results => {
-		res.render('admin/search-results', {
-			pageTitle: 'Administrator',
-			path: '/admin/',
-			results: results
+		'profile.phd': phd,
+		'profile.professionalQualification': professional,
+		'skills.skill': skill
+	})
+		.then(results => {
+			res.render('admin/search-results', {
+				pageTitle: 'Administrator',
+				path: '/admin/',
+				results: results
+			});
+		})
+		.catch(err => {
+			console.log(err);
 		});
-	});
 };
