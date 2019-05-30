@@ -17,27 +17,30 @@ const userProfileSchema = new Schema({
 	workExperience: { type: Number, default: 0 }
 });
 
-const userSchema = new Schema({
-	name: { type: String, required: true, trim: true },
-	email: {
-		type: String,
-		required: true,
-		unique: true,
-		validate(value) {
-			if (!validator.isEmail(value)) {
-				throw new Error('Email is invalid');
-			}
+const userSchema = new Schema(
+	{
+		name: { type: String, required: true, trim: true },
+		email: {
+			type: String,
+			required: true,
+			unique: true,
+			validate(value) {
+				if (!validator.isEmail(value)) {
+					throw new Error('Email is invalid');
+				}
+			},
+			trim: true,
+			lowercase: true
 		},
-		trim: true,
-		lowercase: true
+		password: { type: String, required: true, minlength: 6 },
+		resumeId: {
+			type: Schema.Types.ObjectId,
+			ref: 'Resume'
+		},
+		profile: userProfileSchema,
+		skills: [{ skill: { type: String, trim: true, lowercase: true } }]
 	},
-	password: { type: String, required: true, minlength: 6 },
-	resumeId: {
-		type: Schema.Types.ObjectId,
-		ref: 'Resume'
-	},
-	profile: userProfileSchema,
-	skills: [{ skill: { type: String, trim: true, lowercase: true } }]
-});
+	{ timestamps: true }
+);
 
 module.exports = mongoose.model('User', userSchema);

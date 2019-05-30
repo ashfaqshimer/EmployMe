@@ -15,8 +15,8 @@ const User = require('./models/user');
 const Admin = require('./models/admin');
 
 // This is the link to the local and live databases. Uncomment where needed
-// const MONGODB_URI = 'mongodb://localhost:27017/employmeDB';
-const MONGODB_URI = 'mongodb+srv://admin-ashfaq:admin123@cluster0-nkvw7.mongodb.net/employmeDB';
+const MONGODB_URI = 'mongodb://localhost:27017/employmeDB';
+// const MONGODB_URI = 'mongodb+srv://admin-ashfaq:admin123@cluster0-nkvw7.mongodb.net/employmeDB';
 
 //=====================Main code starts here===========================================
 

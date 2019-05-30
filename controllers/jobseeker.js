@@ -44,10 +44,14 @@ exports.postResumeSummary = (req, res) => {
 };
 
 exports.getResumeWorkExperience = (req, res) => {
-	res.render('jobseeker/resume/work-experience', {
-		pageTitle: 'Resume - Work Experience',
-		path: '/resume',
-		tabpath: '/work'
+	const userId = req.session.user._id;
+	Resume.findOne({ userId: userId }).then(resume => {
+		res.render('jobseeker/resume/work-experience', {
+			pageTitle: 'Resume - Work Experience',
+			path: '/resume',
+			tabpath: '/work',
+			workExperience: resume.workExperience
+		});
 	});
 };
 
@@ -59,8 +63,17 @@ exports.postResumeWorkExperience = (req, res) => {
 	const endDate = req.body.endDate;
 	const description = req.body.description;
 
+	if (endDate <= startDate) {
+		console.log('Throw error : End Date cannot be before start date');
+		return res.redirect('/jobseeker/resume/work-experience');
+	}
+
 	Resume.findOne({ userId: userId })
 		.then(userResume => {
+			if (userResume.workExperience.length >= 3) {
+				console.log('Throw error, maximum number of work experiences');
+				res.redirect('/jobseeker/resume/work-experience');
+			}
 			const newExperience = {
 				title: title,
 				jobCategory: category,
@@ -78,6 +91,23 @@ exports.postResumeWorkExperience = (req, res) => {
 			res.redirect('/jobseeker/resume/work-experience');
 		})
 		.catch(err => {});
+};
+
+exports.postDeleteExperience = (req, res) => {
+	const userId = req.session.user._id;
+	const experienceId = req.body.experienceId;
+
+	Resume.findOne({ userId: userId })
+		.then(resume => {
+			resume.workExperience.pull(experienceId);
+			return resume.save();
+		})
+		.then(result => {
+			res.redirect('/jobseeker/resume/work-experience');
+		})
+		.catch(err => {
+			console.log(err);
+		});
 };
 
 exports.getResumeEducation = (req, res) => {
