@@ -1,6 +1,7 @@
+const PDFDocument = require('pdfkit');
+
 const User = require('../models/user');
 const Resume = require('../models/resume');
-
 const getValues = require('../getValues');
 
 exports.getHome = (req, res) => {
@@ -174,7 +175,7 @@ exports.postDeleteSkill = (req, res) => {
 };
 
 exports.getResumePersonalInfo = (req, res) => {
-	res.render('jobseeker/resume/personalinfo', {
+	res.render('jobseeker/resume/personal-info', {
 		pageTitle: 'Resume-Personal Info',
 		path: '/resume',
 		tabpath: '/personal-info'
@@ -182,11 +183,124 @@ exports.getResumePersonalInfo = (req, res) => {
 };
 
 exports.getResumeGenerateCV = (req, res) => {
-	res.render('jobseeker/resume/generate-cv', {
-		pageTitle: 'Resume-Create',
-		path: '/resume',
-		tabpath: '/create-cv'
-	});
+	const userId = req.session.user._id;
+	// res.render('jobseeker/resume/generate-cv', {
+	// 	pageTitle: 'Resume-Create',
+	// 	path: '/resume',
+	// 	tabpath: '/create-cv'
+	// });
+	Resume.findOne({ userId: userId })
+		.populate('userId', 'skills')
+		.then(resume => {
+			// Creating a downloadable PDF of the resume
+			const pdfDoc = new PDFDocument();
+			pdfDoc.pipe(res);
+			//Header
+			pdfDoc
+				.font('Helvetica')
+				.fontSize(20)
+				.text('Curriculum Vitae', {
+					underline: true,
+					align: 'center'
+				})
+				.moveDown();
+			// User Personal Info
+			pdfDoc
+				.fontSize(16)
+				.text('Personal Information', {
+					underline: true
+				})
+				.moveDown();
+			pdfDoc
+				.fontSize(11)
+				.text(resume.personalInfo.fullName)
+				.text(resume.personalInfo.email)
+				.text(resume.personalInfo.contactNumber)
+				.text(resume.personalInfo.linkedinProfile)
+				.moveDown();
+
+			// Career Objective
+			pdfDoc
+				.fontSize(16)
+				.text('Career Objective', {
+					underline: true
+				})
+				.moveDown();
+			pdfDoc
+				.fontSize(11)
+				.text(resume.summary)
+				.moveDown();
+
+			// Work Experience
+			pdfDoc
+				.fontSize(16)
+				.text('Work Experience', {
+					underline: true
+				})
+				.moveDown();
+			resume.workExperience.forEach(experience => {
+				pdfDoc
+					.fontSize(11)
+					.text(experience.title)
+					.moveDown();
+				pdfDoc
+					.fontSize(11)
+					.text(experience.startDate.toDateString() + ' - ' + experience.endDate.toDateString(), {
+						oblique: true
+					})
+					.moveDown();
+				pdfDoc
+					.fontSize(11)
+					.text(experience.description, { align: 'justify' })
+					.text('-----------------------------------------------------------------------------', {
+						align: 'center'
+					})
+					.moveDown();
+			});
+
+			pdfDoc.addPage();
+
+			// Education
+			pdfDoc
+				.fontSize(16)
+				.text('Education', {
+					underline: true
+				})
+				.moveDown();
+			resume.education.forEach(education => {
+				pdfDoc
+					.fontSize(11)
+					.text(education.title)
+					.moveDown();
+				pdfDoc
+					.fontSize(11)
+					.text(education.startDate.toDateString() + ' - ' + education.endDate.toDateString(), {
+						oblique: true
+					})
+					.moveDown();
+				pdfDoc
+					.fontSize(11)
+					.text(education.description, { align: 'justify' })
+					.text('-----------------------------------------------------------------------------', {
+						align: 'center'
+					})
+					.moveDown();
+			});
+
+			// Skills
+			pdfDoc
+				.fontSize(16)
+				.text('Skills', {
+					underline: true
+				})
+				.moveDown();
+			resume.userId.skills.forEach(skill => {
+				pdfDoc.fontSize(11).text(skill.skill, { columns: 2, align: 'justify', height: 150 });
+			});
+			pdfDoc.moveDown();
+
+			pdfDoc.end();
+		});
 };
 
 exports.getManageProfile = (req, res) => {
