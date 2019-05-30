@@ -112,11 +112,53 @@ exports.postDeleteExperience = (req, res) => {
 };
 
 exports.getResumeEducation = (req, res) => {
-	res.render('jobseeker/resume/education', {
-		pageTitle: 'Resume - Education',
-		path: '/resume',
-		tabpath: '/education'
+	const userId = req.session.user._id;
+	Resume.findOne({ userId: userId }).then(resume => {
+		res.render('jobseeker/resume/education', {
+			pageTitle: 'Resume - Education',
+			path: '/resume',
+			tabpath: '/education',
+			education: resume.education
+		});
 	});
+};
+
+exports.postResumeEducation = (req, res) => {
+	const userId = req.session.user._id;
+	const title = req.body.title;
+	const startDate = req.body.startDate;
+	const endDate = req.body.endDate;
+	const description = req.body.description;
+
+	if (endDate <= startDate) {
+		console.log('Throw error : End Date cannot be before start date');
+		return res.redirect('/jobseeker/resume/education');
+	}
+
+	Resume.findOne({ userId: userId })
+		.then(userResume => {
+			if (userResume.education.length >= 3) {
+				console.log('Throw error, maximum number of education');
+				res.redirect('/jobseeker/resume/education');
+			}
+			const newEducation = {
+				title: title,
+				startDate: startDate,
+				endDate: endDate,
+				description: description
+			};
+
+			const updatededucation = [...userResume.education];
+			updatededucation.push(newEducation);
+			userResume.education = updatededucation;
+			return userResume.save();
+		})
+		.then(result => {
+			res.redirect('/jobseeker/resume/education');
+		})
+		.catch(err => {
+			console.log(err);
+		});
 };
 
 exports.getResumeSkills = (req, res) => {
@@ -175,11 +217,42 @@ exports.postDeleteSkill = (req, res) => {
 };
 
 exports.getResumePersonalInfo = (req, res) => {
-	res.render('jobseeker/resume/personal-info', {
-		pageTitle: 'Resume-Personal Info',
-		path: '/resume',
-		tabpath: '/personal-info'
-	});
+	const userId = req.session.user._id;
+	Resume.findOne({ userId: userId })
+		.then(foundResume => {
+			res.render('jobseeker/resume/personal-info', {
+				pageTitle: 'Resume - Personal Information',
+				path: '/resume',
+				tabpath: '/personal-info',
+				data: foundResume.personalInfo
+			});
+		})
+		.catch(err => {
+			console.log('TCL: exports.getResumePersonalInfo -> err', err);
+		});
+};
+
+exports.postResumePersonalInfo = (req, res) => {
+	const userId = req.session.user._id;
+	const name = req.body.name;
+	const email = req.body.email;
+	const number = req.body.number;
+	const linkedin = req.body.linkedin;
+
+	Resume.findOne({ userId: userId })
+		.then(userResume => {
+			userResume.personalInfo.fullName = name;
+			userResume.personalInfo.contactNumber = number;
+			userResume.personalInfo.email = email;
+			linkedin ? (userResume.personalInfo.linkedinProfile = linkedin) : null;
+			return userResume.save();
+		})
+		.then(result => {
+			res.redirect('/jobseeker/resume/personal-info');
+		})
+		.catch(err => {
+			console.log('TCL: exports.postResumePersonalInfo -> err', err);
+		});
 };
 
 exports.getResumeGenerateCV = (req, res) => {
@@ -252,13 +325,13 @@ exports.getResumeGenerateCV = (req, res) => {
 				pdfDoc
 					.fontSize(11)
 					.text(experience.description, { align: 'justify' })
-					.text('-----------------------------------------------------------------------------', {
-						align: 'center'
-					})
+					// .text('-----------------------------------------------------------------------------', {
+					// 	align: 'center'
+					// })
 					.moveDown();
 			});
 
-			pdfDoc.addPage();
+			// pdfDoc.addPage();
 
 			// Education
 			pdfDoc
@@ -281,9 +354,9 @@ exports.getResumeGenerateCV = (req, res) => {
 				pdfDoc
 					.fontSize(11)
 					.text(education.description, { align: 'justify' })
-					.text('-----------------------------------------------------------------------------', {
-						align: 'center'
-					})
+					// .text('-----------------------------------------------------------------------------', {
+					// 	align: 'center'
+					// })
 					.moveDown();
 			});
 

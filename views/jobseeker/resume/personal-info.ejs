@@ -3,18 +3,51 @@
 </head>
 
 <body>
-    <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %>
+	<%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %> <%-
+	include('../../partials/jobseeker/resume-sidebar.ejs') %>
 
-    <%- include('../../partials/jobseeker/resume-sidebar.ejs') %>
-    
-    <main class="container float-right">
-        <form action="/jobseeker/resume/work" method="POST">
-            <label for="title">Title</label>
-            <input name="title" type="text" id="work-title" />
-            <label for="work-description">Description</label>
-            <textarea name="description" id="" cols="30" rows="10"></textarea>
-        </form>
-    </main>
+	<main class="container">
+		<form class="resume-form" action="/jobseeker/resume/personal-info" method="POST">
+			<h1 class="display-4">Enter your Personal Information</h1>
+			<div class="row">
+				<div class="form-group col">
+					<label for="fullName">Full Name</label>
+					<input id="fullName" type="text" name="name" class="form-control" placeholder="Full Name"
+					value=<%=data.fullName%>>
+				</div>
+				<div class="form-group col">
+					<label for="email">Your E-mail Address</label>
+					<input id="email" type="email" name="email" class="form-control" placeholder="Email" value=<%=data.email%>>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col">
+					<label for="number">Contact Number</label>
+					<input
+						id="number"
+						type="text"
+						name="number"
+						class="form-control"
+                        placeholder="Contact Number"
+                        value=<%=data.contactNumber%>
+					/>
+				</div>
+				<div class="form-group col">
+					<label for="linkedin">LinkedIn Profile</label>
+					<input
+						id="linkedin"
+						type="text"
+						name="linkedin"
+						class="form-control"
+                        placeholder="LinkedIn Profile"
+                        value=<%=data.linkedinProfile%>
+					>
+				</div>
+			</div>
+			<hr class="my-4" />
+			<button type="submit" class="btn btn-primary mt-4">Update</button>
+		</form>
+	</main>
 
-    <%- include('../../partials/footer.ejs') %>
+	<%- include('../../partials/footer.ejs') %>
 </body>

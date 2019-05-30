@@ -1,20 +1,100 @@
 <%- include('../../partials/jobseeker/jobseeker-head.ejs') %>
-<link rel="stylesheet" href="/css/footer.css">
 </head>
 
 <body>
-    <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %>
+	<%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %> <%-
+	include('../../partials/jobseeker/resume-sidebar.ejs') %>
 
-    <%- include('../../partials/jobseeker/resume-sidebar.ejs') %>
-    
-    <main class="container float-right">
-        <form action="/jobseeker/resume/work" method="POST">
-            <label for="title">Title</label>
-            <input name="title" type="text" id="work-title" />
-            <label for="work-description">Description</label>
-            <textarea name="description" id="" cols="30" rows="10"></textarea>
-        </form>
-    </main>
+	<main class="container text-justify row">
+		<form class="summary-form col" action="/jobseeker/resume/education" method="POST">
+			<h1 class="text-center display-4">List down your Education</h1>
+			<hr class="my-4" />
+			<div class="form-group">
+				<label for="title">Title</label>
+				<input id="title" class="form-control" name="title" type="text" placeholder="Education title" />
+			</div>
+			<div class="form-group ">
+				<label for="start-date">Start Date</label>
+				<input id="start-date" class="form-control" type="date" name="startDate" placeholder="Start Date" />
+			</div>
+			<div class="form-group ">
+				<label for="end-date">End Date</label>
+				<input id="end-date" class="form-control" type="date" name="endDate" placeholder="End Date" />
+				<small id="endDateHelp" class="form-text text-muted"
+					>Leave this blank if you are presently studying</small
+				>
+			</div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea
+					class="form-control"
+					name="description"
+					id="description"
+					cols="20"
+					rows="10"
+					placeholder="Brief description of your achievements/results"
+				></textarea>
+			</div>
+			<button
+				type="button"
+				class="btn btn-secondary float-left"
+				data-toggle="modal"
+				data-target="#view-education"
+			>
+				View Education
+			</button>
+			<button type="submit" class="btn btn-primary float-right">Submit</button>
+		</form>
+	</main>
 
-    <%- include('../../partials/footer.ejs') %>
+	<!-- Modal -->
+	<div
+		class="modal fade"
+		id="view-education"
+		tabindex="-1"
+		role="dialog"
+		aria-labelledby="exampleModalLabel"
+		aria-hidden="true"
+	>
+		<div class="modal-dialog modal-xl" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Education</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table table-hover table-sm">
+						<thead class="thead-light">
+							<tr>
+								<th width="20%" scope="col">Title</th>
+								<th width="10%" scope="col">Start Date</th>
+								<th width="10%" scope="col">End Date</th>
+								<th width="60%" scope="col">Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% education.forEach(education=>{ %>
+							<tr>
+								<th scope="row"><%= education.title %></th>
+								<td><%= education.startDate.toDateString() %></td>
+								<td><%= education.endDate.toDateString() %></td>
+								<td><%= education.description %></td>
+								<td>
+									<form action="/jobseeker/resume/education/delete" method="POST">
+										<input type="text" name="educationId" hidden value=<%= education._id%>>
+										<button class="btn btn-sm btn-danger" type="submit">X</button>
+									</form>
+								</td>
+							</tr>
+
+							<% }) %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%- include('../../partials/footer.ejs') %>
 </body>

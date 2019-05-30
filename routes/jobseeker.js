@@ -21,7 +21,10 @@ router
 
 router.post('/resume/work-experience/delete', isAuth, jobseekerControllers.postDeleteExperience);
 
-router.route('/resume/education').get(isAuth, jobseekerControllers.getResumeEducation);
+router
+	.route('/resume/education')
+	.get(isAuth, jobseekerControllers.getResumeEducation)
+	.post(isAuth, jobseekerControllers.postResumeEducation);
 
 router
 	.route('/resume/skills')
@@ -30,7 +33,10 @@ router
 
 router.post('/resume/skills/delete', isAuth, jobseekerControllers.postDeleteSkill);
 
-router.route('/resume/personal-info').get(isAuth, jobseekerControllers.getResumePersonalInfo);
+router
+	.route('/resume/personal-info')
+	.get(isAuth, jobseekerControllers.getResumePersonalInfo)
+	.post(isAuth, jobseekerControllers.postResumePersonalInfo);
 
 router.route('/resume/generate-cv').get(isAuth, jobseekerControllers.getResumeGenerateCV);
 
