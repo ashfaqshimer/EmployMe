@@ -3,9 +3,11 @@
 
 <body class="manage-profile-body">
     <%- include('../partials/jobseeker/jobseeker-navbar.ejs') %>
-    <main class="container-custom">
+    <main class="jumbotron">
+        <h1 class="display-4">Background and Preferences</h1>
+        <hr class="my-4">
         <form
-            class="manage-profile-form border border-primary"
+            class=""
             action="/jobseeker/manage-profile"
             method="POST"
         >
@@ -56,84 +58,93 @@
 
     
                 
-                <hr>
+   
 
-            <h1>Qualifications</h1>
-            <p>Select where applicable, else select none</p>
-            <div class="form-group">
-                <label for="">A/Level Stream</label>
-                <select class="form-control input" name="alStream" id="">
-                    <option value="" selected disabled hidden>--Select one--</option>
-                    <% alStream.forEach(option=>{ %>
-                        <option value="<%=option.value%>" <%= data.alStream===option.value ? 'selected' :null %>><%=option.label%> </option>
-                    <% }); %>
-                    <optgroup>""</optgroup>
-                    <option value="None">None</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">Diploma</label>
-                <select class="form-control" name="diploma" id="">
-                    <option value="" selected disabled hidden>--Select one--</option>
-                    <% diploma.forEach(option=>{ %>
-                        <option value="<%=option.value%>" <%= data.diploma===option.value ? 'selected' :null %>><%=option.label%> </option>
-                    <% }); %>
-                    <optgroup>""</optgroup>
-                    <option value="None">None</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">Bachelor's Degree</label>
-                <select  class="form-control" name="bachelors" id="">
-                    <option value="" selected disabled hidden>--Select one--</option>
-                    <% bachelors.forEach(option=>{ %>
-                        <option value="<%=option.value%>" <%= data.bachelors===option.value ? 'selected' :null %>><%=option.label%> </option>
-                    <% }); %>
-                    <optgroup>""</optgroup>
-                    <option value="None">None</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">Masters</label>
-                <select class="form-control" name="masters" id="">
-                    <option value="" selected disabled hidden>--Select one--</option>
-                    <% masters.forEach(option=>{ %>
-                        <option value="<%=option.value%>" <%= data.masters===option.value ? 'selected' :null %>><%=option.label%> </option>
-                    <% }); %>
-                    <optgroup>""</optgroup>
-                    <option value="None" <%= data.masters==="None" ? 'selected' :null %>>None</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">PhD</label>
-                <select class="form-control" name="phd" id="">
-                    <option value="" selected disabled hidden>--Select one--</option>
-                    <% phd.forEach(option=>{ %>
-                        <option value="<%=option.value%>" <%= data.phd===option.value ? 'selected' :null %>><%=option.label%> </option>
-                    <% }); %>
-                    <optgroup>""</optgroup>
-                    <option value="None" <%= data.phd==="None" ? 'selected' :null %>>None</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">Professional Qualifications</label>
-                <select class="form-control" name="professional" id="">
-                    <option value="" selected disabled hidden>--Select one--</option>
-                    <% professional.forEach(option=>{ %>
-                        <option value="<%=option.value%>" <%= data.professionalQualification===option.value ? 'selected' :null %>><%=option.label%> </option>
-                    <% }); %>
-                    <optgroup>""</optgroup>
-                    <option value="None" <%= data.professionalQualification==="None" ? 'selected' :null %> >None </option>
-                </select>
-            </div>
+            <h1 class="display-4">Qualifications</h1>
+            <p class="lead">Select where applicable, else select none</p>
+            <hr class="my-4">
+            <div class="row">
+                    <div class="form-group col">
+                            <label for="">A/Level Stream</label>
+                            <select class="form-control input" name="alStream" id="">
+                                <option value="" selected disabled hidden>--Select one--</option>
+                                <% alStream.forEach(option=>{ %>
+                                    <option value="<%=option.value%>" <%= data.alStream===option.value ? 'selected' :null %>><%=option.label%> </option>
+                                <% }); %>
+                                <optgroup>""</optgroup>
+                                <option value="None">None</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="">Diploma</label>
+                            <select class="form-control" name="diploma" id="">
+                                <option value="" selected disabled hidden>--Select one--</option>
+                                <% diploma.forEach(option=>{ %>
+                                    <option value="<%=option.value%>" <%= data.diploma===option.value ? 'selected' :null %>><%=option.label%> </option>
+                                <% }); %>
+                                <optgroup>""</optgroup>
+                                <option value="None">None</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="">Bachelor's Degree</label>
+                            <select  class="form-control" name="bachelors" id="">
+                                <option value="" selected disabled hidden>--Select one--</option>
+                                <% bachelors.forEach(option=>{ %>
+                                    <option value="<%=option.value%>" <%= data.bachelors===option.value ? 'selected' :null %>><%=option.label%> </option>
+                                <% }); %>
+                                <optgroup>""</optgroup>
+                                <option value="None">None</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col">
+                            <label for="">Masters</label>
+                            <select class="form-control" name="masters" id="">
+                                <option value="" selected disabled hidden>--Select one--</option>
+                                <% masters.forEach(option=>{ %>
+                                    <option value="<%=option.value%>" <%= data.masters===option.value ? 'selected' :null %>><%=option.label%> </option>
+                                <% }); %>
+                                <optgroup>""</optgroup>
+                                <option value="None" <%= data.masters==="None" ? 'selected' :null %>>None</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="">PhD</label>
+                            <select class="form-control" name="phd" id="">
+                                <option value="" selected disabled hidden>--Select one--</option>
+                                <% phd.forEach(option=>{ %>
+                                    <option value="<%=option.value%>" <%= data.phd===option.value ? 'selected' :null %>><%=option.label%> </option>
+                                <% }); %>
+                                <optgroup>""</optgroup>
+                                <option value="None" <%= data.phd==="None" ? 'selected' :null %>>None</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="">Professional Qualifications</label>
+                            <select class="form-control" name="professional" id="">
+                                <option value="" selected disabled hidden>--Select one--</option>
+                                <% professional.forEach(option=>{ %>
+                                    <option value="<%=option.value%>" <%= data.professionalQualification===option.value ? 'selected' :null %>><%=option.label%> </option>
+                                <% }); %>
+                                <optgroup>""</optgroup>
+                                <option value="None" <%= data.professionalQualification==="None" ? 'selected' :null %> >None </option>
+                            </select>
+                        </div>
+                    </div>
+
+   
+    
             <button class="btn btn-primary" >Submit Changes</button>
             <button class="btn btn-danger">Reset</button>
             <br>
             <hr>
-            <h1>Skills and Experience</h1>
-            <p>Your skills and experience will be managed from the resume manager section. If you haven't filled them out,
+            <h1 class="display-4">Skills and Experience</h1>
+            <p class="lead">Your skills and experience will be managed from the resume manager section. If you haven't filled them out,
                 you may do so by clicking on the button below:                
-            </p>
+            </p >
             <a class="btn btn-warning" href="/jobseeker/resume/skills">Update Skills</a>
             <a class="btn btn-success" href="/jobseeker/resume/work-experience">Update Work Experience</a>
     
