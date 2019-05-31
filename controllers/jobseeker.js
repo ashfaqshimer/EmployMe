@@ -132,6 +132,7 @@ exports.postDeleteExperience = (req, res) => {
 			return resume.save();
 		})
 		.then(result => {
+			req.flash('success', 'Successfully deleted!');
 			res.redirect('/jobseeker/resume/work-experience');
 		})
 		.catch(err => {
@@ -141,12 +142,26 @@ exports.postDeleteExperience = (req, res) => {
 
 exports.getResumeEducation = (req, res) => {
 	const userId = req.session.user._id;
+	let errorMessage = req.flash('error');
+	if (errorMessage.length > 0) {
+		errorMessage = errorMessage[0];
+	} else {
+		errorMessage = null;
+	}
+	let successMessage = req.flash('success');
+	if (successMessage.length > 0) {
+		successMessage = successMessage[0];
+	} else {
+		successMessage = null;
+	}
 	Resume.findOne({ userId: userId }).then(resume => {
 		res.render('jobseeker/resume/education', {
 			pageTitle: 'Resume - Education',
 			path: '/resume',
 			tabpath: '/education',
-			education: resume.education
+			education: resume.education,
+			success: successMessage,
+			error: errorMessage
 		});
 	});
 };
@@ -160,6 +175,7 @@ exports.postResumeEducation = (req, res) => {
 
 	if (endDate <= startDate) {
 		console.log('Throw error : End Date cannot be before start date');
+		req.flash('error', 'End date cannot be before the start date');
 		return res.redirect('/jobseeker/resume/education');
 	}
 
@@ -167,6 +183,10 @@ exports.postResumeEducation = (req, res) => {
 		.then(userResume => {
 			if (userResume.education.length >= 3) {
 				console.log('Throw error, maximum number of education');
+				req.flash(
+					'error',
+					'Maximum work educations reached. You may remove one from "View Education"'
+				);
 				res.redirect('/jobseeker/resume/education');
 			}
 			const newEducation = {
@@ -182,6 +202,25 @@ exports.postResumeEducation = (req, res) => {
 			return userResume.save();
 		})
 		.then(result => {
+			req.flash('success', 'Successfully added!');
+			res.redirect('/jobseeker/resume/education');
+		})
+		.catch(err => {
+			console.log(err);
+		});
+};
+
+exports.postDeleteEducation = (req, res) => {
+	const userId = req.session.user._id;
+	const educationId = req.body.educationId;
+
+	Resume.findOne({ userId: userId })
+		.then(resume => {
+			resume.education.pull(educationId);
+			return resume.save();
+		})
+		.then(result => {
+			req.flash('success', 'Successfully deleted!');
 			res.redirect('/jobseeker/resume/education');
 		})
 		.catch(err => {
@@ -246,13 +285,20 @@ exports.postDeleteSkill = (req, res) => {
 
 exports.getResumePersonalInfo = (req, res) => {
 	const userId = req.session.user._id;
+	let message = req.flash('success');
+	if (message.length > 0) {
+		message = message[0];
+	} else {
+		message = null;
+	}
 	Resume.findOne({ userId: userId })
 		.then(foundResume => {
 			res.render('jobseeker/resume/personal-info', {
 				pageTitle: 'Resume - Personal Information',
 				path: '/resume',
 				tabpath: '/personal-info',
-				data: foundResume.personalInfo
+				data: foundResume.personalInfo,
+				success: message
 			});
 		})
 		.catch(err => {});
@@ -274,6 +320,7 @@ exports.postResumePersonalInfo = (req, res) => {
 			return userResume.save();
 		})
 		.then(result => {
+			req.flash('success', 'Succesfully Updated!');
 			res.redirect('/jobseeker/resume/personal-info');
 		})
 		.catch(err => {});

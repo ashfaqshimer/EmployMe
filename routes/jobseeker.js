@@ -26,6 +26,8 @@ router
 	.get(isAuth, jobseekerControllers.getResumeEducation)
 	.post(isAuth, jobseekerControllers.postResumeEducation);
 
+router.post('/resume/education/delete', isAuth, jobseekerControllers.postDeleteEducation);
+
 router
 	.route('/resume/skills')
 	.get(isAuth, jobseekerControllers.getResumeSkills)

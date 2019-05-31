@@ -6,6 +6,16 @@
 	include('../../partials/jobseeker/resume-sidebar.ejs') %>
 
 	<main class="container text-justify row">
+			<% if (error){ %>
+                <div class="alert alert-danger text-center" role="alert">
+                    <%= error %>
+                </div>
+				<% } %>
+				<% if (success){ %>
+					<div class="alert alert-success text-center" role="alert">
+						<%= success %>
+					</div>
+					<% } %>
 		<form class="summary-form col" action="/jobseeker/resume/education" method="POST">
 			<h1 class="text-center display-4">List down your Education</h1>
 			<hr class="my-4" />
