@@ -3,6 +3,11 @@
 
 <body>
         <%- include('partials/navbar.ejs') %>
+        <% if (error){ %>
+            <div class="alert alert-danger text-center" role="alert">
+                <%= error %>
+            </div>
+            <% } %>
     <div class="container d-flex justify-content-center mt-3 border rounded">
         <form class="form-horizontal" action="" method="POST">
             <fieldset>

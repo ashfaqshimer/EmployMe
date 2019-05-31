@@ -27,8 +27,8 @@ const resumeSchema = new Schema(
 		],
 
 		personalInfo: {
-			fullName: { type: String, trim: true, required: true },
-			contactNumber: { type: String, trim: true, required: true },
+			fullName: { type: String, trim: true },
+			contactNumber: { type: String, trim: true },
 			email: {
 				type: String,
 				validate(value) {
@@ -37,8 +37,7 @@ const resumeSchema = new Schema(
 					}
 				},
 				trim: true,
-				lowercase: true,
-				required: true
+				lowercase: true
 			},
 			linkedinProfile: {
 				type: String,

@@ -46,6 +46,8 @@ app.use(
 	})
 );
 
+app.use(flash());
+
 // Create a session
 
 app.use((req, res, next) => {

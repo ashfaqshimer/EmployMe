@@ -3,13 +3,13 @@
 
 <body>
     <%- include('partials/navbar.ejs') %>
+    <% if (error){ %>
+        <div class="alert alert-danger text-center" role="alert">
+            <%= error %>
+        </div>
+        <% } %>
     <div class="p-3 d-flex justify-content-center ">
-        <form action="/signup" method="POST">
-
-                <!-- <div class="alert alert-danger" role="alert">
-                        This is a danger alert—check it out!
-                </div> -->
-
+        <form action="/signup" method="POST" >
 
             <div class="form-group row">
                 <label for="name">Name</label>
@@ -39,7 +39,7 @@
                     required
                 />
                 <small id="emailHelp" class="form-text text-muted"
-                    >We'll never share your email with anyone else.</small
+                    >You can assign a different email for your jobseeker profile.</small
                 >
             </div>
 

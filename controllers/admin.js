@@ -1,6 +1,5 @@
 const User = require('../models/user');
 const Resume = require('../models/resume');
-
 const getValues = require('../getValues');
 
 exports.getHome = (req, res) => {
