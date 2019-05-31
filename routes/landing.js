@@ -33,7 +33,24 @@ router
 router
 	.route('/signup/admin')
 	.get(authControllers.getAdminSignup)
-	.post(authControllers.postAdminSignup);
+	.post(
+		[
+			check('email')
+				.isEmail()
+				.withMessage('Please enter a valid email'),
+
+			body('password', 'Please enter a valid password of at least 6 characters.').isLength({
+				min: 6
+			}),
+			body('password2').custom((value, { req }) => {
+				if (value !== req.body.password) {
+					throw new Error('Passwords have to match.');
+				}
+				return true;
+			})
+		],
+		authControllers.postAdminSignup
+	);
 
 router
 	.route('/login/jobseeker')

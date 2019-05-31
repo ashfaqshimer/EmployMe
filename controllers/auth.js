@@ -12,7 +12,6 @@ exports.getHome = (req, res) => {
 
 exports.getSignup = (req, res) => {
 	let message = req.flash('error');
-	console.log("TCL: exports.getJobseekerLogin -> req.flash('error')", req.flash('error'));
 	if (message.length > 0) {
 		message = message[0];
 	} else {
@@ -76,7 +75,6 @@ exports.postSignup = (req, res) => {
 
 exports.getAdminSignup = (req, res) => {
 	let message = req.flash('error');
-	console.log("TCL: exports.getJobseekerLogin -> req.flash('error')", req.flash('error'));
 	if (message.length > 0) {
 		message = message[0];
 	} else {
@@ -90,12 +88,13 @@ exports.postAdminSignup = (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	Admin.findOne({ email: email })
+	Admin.findOne({ username: username })
 		.then(userDoc => {
 			if (userDoc) {
-				req.flash('error', 'Admin with that email already exists');
+				req.flash('error', 'Admin with that username already exists');
 				return res.redirect('/signup/admin');
 			}
+
 			return bcrypt
 				.hash(password, 12)
 				.then(hashedPassword => {
@@ -118,7 +117,6 @@ exports.postAdminSignup = (req, res) => {
 
 exports.getJobseekerLogin = (req, res) => {
 	let message = req.flash('error');
-	console.log("TCL: exports.getJobseekerLogin -> req.flash('error')", req.flash('error'));
 	if (message.length > 0) {
 		message = message[0];
 	} else {
@@ -167,7 +165,6 @@ exports.postJobseekerLogin = (req, res) => {
 
 exports.getAdminLogin = (req, res) => {
 	let message = req.flash('error');
-	console.log("TCL: exports.getJobseekerLogin -> req.flash('error')", req.flash('error'));
 	if (message.length > 0) {
 		message = message[0];
 	} else {
