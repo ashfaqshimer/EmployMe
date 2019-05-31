@@ -4,40 +4,6 @@
 
 <body>
 	<%- include('../partials/admin/admin-navbar.ejs') %>
-	<!-- <section class="container">
-		<div class="row">
-			<form action="" class="col">
-				<div class="row">
-					<select class="form-control search-slt col" name="sector" id="exampleFormControlSelect1">
-						<option selected hidden disabled>Job Sector</option>
-						<% jobSector.forEach(option=>{ %>
-						<option value="<%=option.value%>"><%=option.label%> </option>
-						<% }); %>
-					</select>
-	
-					<button type="submit" class="btn btn-danger wrn-btn col">
-						Search
-					</button>
-		
-				</div>
-			</form>
-			<form action="" class="col">
-				<div class="row">
-					<select class="form-control search-slt col" name="sector" id="exampleFormControlSelect1">
-						<option selected hidden disabled>Job Sector</option>
-						<% jobSector.forEach(option=>{ %>
-						<option value="<%=option.value%>"><%=option.label%> </option>
-						<% }); %>
-					</select>
-				
-					<button type="submit" class="btn btn-danger wrn-btn col">
-						Search
-					</button>
-					
-				</div>
-			</form>
-		</div>
-	</section> -->
 
 	<section id="test">
 		<form action="/admin/search" method="post">
@@ -46,7 +12,7 @@
 				<h1 class="display-4">Search for candidates</h1>
 				<p class="lead"> Work</p>
 				<div class="row m-3">
-						<select class="form-control search-slt col" name="jobSector">
+						<select class="form-control search-slt col" name="jobSector" required>
 							<option value="" selected hidden disabled>Job Sector</option>
 							<% jobSector.forEach(option=>{ %>
 							<option value="<%=option.value%>"><%=option.label%> </option>
@@ -57,8 +23,8 @@
 							type="number"
 							name="experience"
 							placeholder="Work Experience"
-							id=""
-						/>
+							id="work-experience"
+							/>
 		
 						<input
 							class="form-control search-slt col"

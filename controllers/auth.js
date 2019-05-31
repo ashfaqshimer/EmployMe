@@ -195,7 +195,7 @@ exports.postAdminLogin = (req, res) => {
 							res.redirect('/admin/');
 						});
 					}
-					req.flash('error', 'Incorrect email or password');
+					req.flash('error', 'Incorrect username or password');
 					res.redirect('/login/admin');
 				})
 				.catch(err => {
