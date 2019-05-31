@@ -24,7 +24,6 @@ exports.postSignup = (req, res) => {
 	const name = req.body.name;
 	const email = req.body.email;
 	const password = req.body.password;
-	const password2 = req.body.password2;
 	const errors = validationResult(req);
 
 	if (!errors.isEmpty()) {

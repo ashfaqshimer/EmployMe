@@ -5,8 +5,12 @@
 <body>
     <%- include('../../partials/jobseeker/jobseeker-navbar.ejs') %> <%-
     include('../../partials/jobseeker/resume-sidebar.ejs') %>
-
     <main class="container">
+            <% if (success){ %>
+                <div class="alert alert-success text-center" role="alert">
+                    <%= success %>
+                </div>
+                <% } %>
         <form class="resume-form" action="/jobseeker/resume/summary" method="POST">
             <h1 class="display-4">Enter your career objective</h1>
             <div class="form-group">

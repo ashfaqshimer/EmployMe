@@ -18,13 +18,20 @@ exports.getResume = (req, res) => {
 
 exports.getResumeSummary = (req, res) => {
 	const userId = req.session.user._id;
+	let message = req.flash('success');
+	if (message.length > 0) {
+		message = message[0];
+	} else {
+		message = null;
+	}
 	Resume.findOne({ userId: userId })
 		.then(foundResume => {
 			res.render('jobseeker/resume/summary', {
 				pageTitle: 'Resume - Summary',
 				path: '/resume',
 				tabpath: '/summary',
-				data: foundResume.summary
+				data: foundResume.summary,
+				success: message
 			});
 		})
 		.catch(err => {});
@@ -39,6 +46,7 @@ exports.postResumeSummary = (req, res) => {
 			return userResume.save();
 		})
 		.then(result => {
+			req.flash('success', 'Successfully Updated ');
 			res.redirect('/jobseeker/resume/summary');
 		})
 		.catch(err => {});
@@ -46,12 +54,26 @@ exports.postResumeSummary = (req, res) => {
 
 exports.getResumeWorkExperience = (req, res) => {
 	const userId = req.session.user._id;
+	let errorMessage = req.flash('error');
+	if (errorMessage.length > 0) {
+		errorMessage = errorMessage[0];
+	} else {
+		errorMessage = null;
+	}
+	let successMessage = req.flash('success');
+	if (successMessage.length > 0) {
+		successMessage = successMessage[0];
+	} else {
+		successMessage = null;
+	}
 	Resume.findOne({ userId: userId }).then(resume => {
 		res.render('jobseeker/resume/work-experience', {
 			pageTitle: 'Resume - Work Experience',
 			path: '/resume',
 			tabpath: '/work',
-			workExperience: resume.workExperience
+			workExperience: resume.workExperience,
+			error: errorMessage,
+			success: successMessage
 		});
 	});
 };
@@ -66,12 +88,17 @@ exports.postResumeWorkExperience = (req, res) => {
 
 	if (endDate <= startDate) {
 		console.log('Throw error : End Date cannot be before start date');
+		req.flash('error', 'End date cannot be before the start date');
 		return res.redirect('/jobseeker/resume/work-experience');
 	}
 
 	Resume.findOne({ userId: userId })
 		.then(userResume => {
 			if (userResume.workExperience.length >= 3) {
+				req.flash(
+					'error',
+					'Maximum work experiences reached. You may remove one from "View Experiences"'
+				);
 				console.log('Throw error, maximum number of work experiences');
 				res.redirect('/jobseeker/resume/work-experience');
 			}
@@ -89,6 +116,7 @@ exports.postResumeWorkExperience = (req, res) => {
 			return userResume.save();
 		})
 		.then(result => {
+			req.flash('success', 'Successfully added!');
 			res.redirect('/jobseeker/resume/work-experience');
 		})
 		.catch(err => {});
@@ -227,9 +255,7 @@ exports.getResumePersonalInfo = (req, res) => {
 				data: foundResume.personalInfo
 			});
 		})
-		.catch(err => {
-			console.log('TCL: exports.getResumePersonalInfo -> err', err);
-		});
+		.catch(err => {});
 };
 
 exports.postResumePersonalInfo = (req, res) => {
@@ -250,9 +276,7 @@ exports.postResumePersonalInfo = (req, res) => {
 		.then(result => {
 			res.redirect('/jobseeker/resume/personal-info');
 		})
-		.catch(err => {
-			console.log('TCL: exports.postResumePersonalInfo -> err', err);
-		});
+		.catch(err => {});
 };
 
 exports.getResumeGenerateCV = (req, res) => {
