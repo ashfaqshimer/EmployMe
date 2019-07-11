@@ -51,6 +51,9 @@ exports.postSearch = (req, res) => {
 	const alPasses = req.body.alPasses ? req.body.alPasses : 0;
 	const educationLevel = req.body.educationLevel ? req.body.educationLevel : 0;
 
+	console.log(jobSector);
+	console.log(req.body);
+
 	User.find({
 		'profile.preferredJobSector': jobSector,
 		'profile.diploma': diploma,

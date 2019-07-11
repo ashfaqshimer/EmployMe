@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const flash = require('connect-flash');
+const csrf = require('csurf');
 
 // Import routes
 const landingRoutes = require('./routes/landing');
@@ -27,6 +28,8 @@ const store = new MongoDBStore({
 	collection: 'sessions'
 });
 
+const csrfProtection = csrf();
+
 // Connecting the database
 mongoose.connect(MONGODB_URI, {
 	useNewUrlParser: true,
@@ -45,6 +48,8 @@ app.use(
 		store: store
 	})
 );
+
+app.use(csrfProtection);
 
 app.use(flash());
 

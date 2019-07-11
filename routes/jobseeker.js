@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { check, body } = require('express-validator/check');
 
 const jobseekerControllers = require('../controllers/jobseeker');
 const isAuth = require('../middleware/isAuthUser');
@@ -38,7 +39,11 @@ router.post('/resume/skills/delete', isAuth, jobseekerControllers.postDeleteSkil
 router
 	.route('/resume/personal-info')
 	.get(isAuth, jobseekerControllers.getResumePersonalInfo)
-	.post(isAuth, jobseekerControllers.postResumePersonalInfo);
+	.post(
+		body('linkedin', 'Please enter a valid URL').isURL(),
+		isAuth,
+		jobseekerControllers.postResumePersonalInfo
+	);
 
 router.route('/resume/generate-cv').get(isAuth, jobseekerControllers.getResumeGenerateCV);
 

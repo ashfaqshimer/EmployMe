@@ -1,36 +1,49 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
-    <a class="navbar-brand" href="/">EmployMe</a>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item <%= path==='/' ? 'active' :'' %> ">
-            <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/#about">About</a>
-        </li>
-        <li class="-nav-item <%= path==='/signup/admin' ? 'active' :'' %>">
-            <a class="nav-link " href="/signup/admin">Admin Sign up</a>
-        </li>
-        <li class="admin-nav-item <%= path==='/signup' ? 'active' :'' %>">
-            <a class="nav-link" href="/signup">Sign up</a>
-        </li>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark p-3">
+	<a class="navbar-brand" href="/">EmployMe</a>
+	<button
+		class="navbar-toggler"
+		type="button"
+		data-toggle="collapse"
+		data-target="#navbarNav"
+		aria-controls="navbarNav"
+		aria-expanded="false"
+		aria-label="Toggle navigation"
+	>
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item <%= path==='/' ? 'active' :'' %> ">
+				<a class="nav-link" href="/">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/#about">About</a>
+			</li>
+			<li class="-nav-item <%= path==='/signup/admin' ? 'active' :'' %>">
+				<a class="nav-link " href="/signup/admin">Admin Sign up</a>
+			</li>
+			<li class="admin-nav-item <%= path==='/signup' ? 'active' :'' %>">
+				<a class="nav-link" href="/signup">Sign up</a>
+			</li>
 
-        <li class="nav-item dropdown <%= path==='/login' ? 'active' :'' %>">
-            <a
-                class="nav-link dropdown-toggle btn btn-success"
-                href="/login"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-            >
-                Login
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/login/admin">Admin</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item bg-warning" href="/login/jobseeker">Job Seeker</a>
-            </div>
-        </li>
-    </ul>
+			<li class="nav-item dropdown <%= path==='/login' ? 'active' :'' %>">
+				<a
+					class="nav-link dropdown-toggle btn btn-success"
+					href="/login"
+					id="navbarDropdown"
+					role="button"
+					data-toggle="dropdown"
+					aria-haspopup="true"
+					aria-expanded="false"
+				>
+					Login
+				</a>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="/login/admin">Admin</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item bg-warning" href="/login/jobseeker">Job Seeker</a>
+				</div>
+			</li>
+		</ul>
+	</div>
 </nav>

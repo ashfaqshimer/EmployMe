@@ -1,4 +1,5 @@
 const PDFDocument = require('pdfkit');
+const { validationResult } = require('express-validator/check');
 
 const User = require('../models/user');
 const Resume = require('../models/resume');
@@ -286,6 +287,7 @@ exports.postDeleteSkill = (req, res) => {
 exports.getResumePersonalInfo = (req, res) => {
 	const userId = req.session.user._id;
 	let message = req.flash('success');
+	const errors = validationResult(req);
 	if (message.length > 0) {
 		message = message[0];
 	} else {
@@ -298,7 +300,8 @@ exports.getResumePersonalInfo = (req, res) => {
 				path: '/resume',
 				tabpath: '/personal-info',
 				data: foundResume.personalInfo,
-				success: message
+				success: message,
+				error: null
 			});
 		})
 		.catch(err => {});
@@ -310,6 +313,20 @@ exports.postResumePersonalInfo = (req, res) => {
 	const email = req.body.email;
 	const number = req.body.number;
 	const linkedin = req.body.linkedin;
+	const errors = validationResult(req);
+
+	if (!errors.isEmpty()) {
+		Resume.findOne({ userId: userId }).then(foundResume => {
+			return res.status(422).render('jobseeker/resume/personal-info', {
+				pageTitle: 'Resume - Personal Information',
+				path: '/resume',
+				tabpath: '/personal-info',
+				data: foundResume.personalInfo,
+				success: null,
+				error: errors.array()[0].msg
+			});
+		});
+	}
 
 	Resume.findOne({ userId: userId })
 		.then(userResume => {
@@ -323,7 +340,9 @@ exports.postResumePersonalInfo = (req, res) => {
 			req.flash('success', 'Succesfully Updated!');
 			res.redirect('/jobseeker/resume/personal-info');
 		})
-		.catch(err => {});
+		.catch(err => {
+			console.log('TCL: exports.postResumePersonalInfo -> err', err);
+		});
 };
 
 exports.getResumeGenerateCV = (req, res) => {

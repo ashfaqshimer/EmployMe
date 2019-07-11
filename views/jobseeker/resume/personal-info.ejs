@@ -12,6 +12,11 @@
                     <%= success %>
                 </div>
                 <% } %>
+			<% if (error){ %>
+                <div class="alert alert-danger text-center" role="alert">
+                    <%= error %>
+                </div>
+                <% } %>
 		<form class="resume-form" action="/jobseeker/resume/personal-info" method="POST">
 			<h1 class="display-4">Enter your Personal Information</h1>
 			<div class="row">
