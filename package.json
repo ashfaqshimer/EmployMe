@@ -31,6 +31,6 @@
     "passport-local-mongoose": "^5.0.1",
     "pdfkit": "^0.9.1",
     "sequelize": "^5.8.6",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   }
 }
